@@ -39,7 +39,41 @@ body {
   font-size: 1.1rem;
 }
 
-@media (max-width: 1099px) {
+@media (max-width: 1400px) {
+  .game { min-width: 140px; }
+  .ff-game { width: 140px; }
+  .first-four-games { grid-template-columns: repeat(2, minmax(0, 140px)); }
+  .bracket-center { min-width: 170px; }
+  .region-rounds { gap: 0.35rem; }
+  .round--r32 { padding: 0.75rem 0; }
+  .round--s16 { padding: 2.25rem 0; }
+  .round--e8 { padding: 4.5rem 0; }
+}
+
+@media (max-width: 1200px) {
+  .game { min-width: 125px; font-size: 0.72rem; }
+  .ff-game { width: 125px; font-size: 0.72rem; }
+  .first-four-games { grid-template-columns: repeat(2, minmax(0, 125px)); }
+  .bracket-center { min-width: 150px; padding: 0 0.25rem; }
+  .championship-center { min-width: 180px; max-width: 220px; }
+  .final-four { gap: 1rem; }
+  .region-rounds { gap: 0.25rem; }
+  .round--r32 { padding: 0.5rem 0; }
+  .round--s16 { padding: 1.5rem 0; }
+  .round--e8 { padding: 3rem 0; }
+  .header-actions--left,
+  .header-actions--right { min-width: 160px; }
+  .header-btn { font-size: 0.58rem; padding: 0.3rem 0.45rem; }
+  .header-actions .download-btn { font-size: 0.58rem; padding: 0.3rem 0.45rem; }
+}
+
+@media (max-height: 500px) {
+  .bracket-header--sticky { padding-bottom: 0.25rem; }
+  .app-title { font-size: 1.6rem; padding: 0.5rem 0 0.15rem; }
+  .odds-total { padding: 0.1rem 0 0.5rem; }
+}
+
+@media (min-width: 768px) and (max-width: 1099px) {
   .desktop-only-gate { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
   .app { display: none !important; }
 }
@@ -57,21 +91,12 @@ body {
   font-size: 2.2rem;
   letter-spacing: 0.04em;
   text-align: center;
-  padding: 1.5rem 0 0.25rem;
+  padding: 0.25rem 0 0;
 }
 
-/* Action buttons (reset + download) */
-.action-buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 2rem auto 0;
-}
-
+/* Reset button (used in mobile actions fallback) */
 .reset-btn {
   display: block;
-  min-width: 280px;
   padding: 0.75rem 1.5rem;
   font-family: var(--font-display);
   font-weight: 900;
@@ -95,7 +120,7 @@ body {
   align-items: baseline;
   justify-content: center;
   gap: 0.75rem;
-  padding: 0.25rem 0 1rem;
+  padding: 0.15rem 0 0;
 }
 
 .odds-total-label {
@@ -193,6 +218,7 @@ body {
 .ff-slot--loser .team-name,
 .ff-slot--loser .team-odds {
   color: var(--gray-lowlight);
+  text-decoration: line-through;
 }
 
 /* Game tile */
@@ -247,6 +273,7 @@ body {
 .game-slot--loser .team-odds,
 .game-slot--loser .team-seed {
   color: var(--gray-lowlight);
+  text-decoration: line-through;
 }
 
 .game-slot--placeholder {
@@ -297,6 +324,68 @@ body {
   z-index: 50;
   background: linear-gradient(to bottom, rgba(0,0,0,0.98), rgba(0,0,0,0.96) 60%, rgba(0,0,0,0.92));
   padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem 0.5rem;
+}
+
+.header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.header-actions--left {
+  justify-content: flex-start;
+  min-width: 210px;
+}
+
+.header-actions--right {
+  justify-content: flex-end;
+  min-width: 210px;
+}
+
+.header-btn {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.6rem;
+  background: transparent;
+  color: var(--gray-lowlight);
+  border: 1px solid var(--gray-border);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.header-btn:hover {
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.header-actions .download-btn {
+  min-width: unset;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+}
+
+/* Hide header buttons in capture mode */
+body.capture-mode .header-actions {
+  display: none;
 }
 
 .bracket-header--inline {
@@ -344,6 +433,7 @@ body.capture-mode .final-four {
   display: flex;
   align-items: center;
   gap: 0;
+  overflow-x: auto;
 }
 
 .game-exact-path-odds {
@@ -414,12 +504,12 @@ body.capture-mode .final-four {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 8.5rem; /* slightly lower for better alignment */
+  top: 8.5rem;
   z-index: 20;
 }
 
 body.capture-mode .first-four--overlay {
-  top: 1.5rem; /* align with East/West region labels */
+  top: 1.5rem;
 }
 
 .bracket-watermark {
@@ -621,7 +711,6 @@ body.capture-mode .bracket-watermark {
 /* Download button */
 .download-btn {
   display: block;
-  min-width: 280px;
   padding: 0.75rem 1.5rem;
   font-family: var(--font-display);
   font-weight: 900;
@@ -637,10 +726,6 @@ body.capture-mode .bracket-watermark {
 
 .download-btn:hover {
   opacity: 0.85;
-}
-
-.random-btn {
-  margin-top: 0.5rem;
 }
 
 /* Data & Sources */
@@ -710,4 +795,215 @@ body.capture-mode .bracket-watermark {
 
 .data-sources-citation {
   font-style: italic;
+}
+
+/* ========== Mobile ========== */
+
+.mobile-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--gray-mid);
+}
+
+.mobile-app {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  /* Hide desktop, show mobile */
+  .desktop-only-gate { display: none !important; }
+  .app { display: none !important; }
+  .mobile-app { display: flex; flex-direction: column; min-height: 100vh; }
+
+  /* Mobile header */
+  .mobile-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.98), rgba(0,0,0,0.96) 60%, rgba(0,0,0,0.92));
+    padding: 0.4rem 0.5rem 0.35rem;
+    text-align: center;
+  }
+
+  .mobile-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  .mobile-header-left,
+  .mobile-header-right {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .mobile-title {
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    text-align: center;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .mobile-header .odds-total {
+    padding: 0.1rem 0 0;
+    gap: 0.4rem;
+  }
+
+  /* Mobile header buttons */
+  .mobile-header .header-btn {
+    font-size: 0.55rem;
+    padding: 0.3rem 0.4rem;
+    letter-spacing: 0.04em;
+  }
+
+  .mobile-header .download-btn {
+    min-width: unset;
+    padding: 0.3rem 0.4rem;
+    font-size: 0.55rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* Swipe panels */
+  .mobile-panels {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex: 1;
+  }
+  .mobile-panels::-webkit-scrollbar { display: none; }
+
+  .mobile-panel {
+    min-width: 100%;
+    scroll-snap-align: start;
+    padding: 0.75rem 0.75rem 1rem;
+  }
+
+  /* Mobile region */
+  .mobile-region-title {
+    font-weight: 900;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    color: var(--white);
+  }
+
+  .mobile-round {
+    margin-bottom: 1.25rem;
+  }
+
+  .mobile-round-label {
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--gray-lowlight);
+    margin-bottom: 0.4rem;
+    text-align: center;
+  }
+
+  .mobile-round-games {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Game tiles full-width + larger tap targets */
+  .mobile-app .game {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .mobile-app .game-slot {
+    padding: 0.5rem 0.75rem;
+    min-height: 2.75rem;
+  }
+
+  .mobile-app .ff-game {
+    width: 100%;
+  }
+
+  .mobile-app .ff-slot {
+    padding: 0.45rem 0.75rem;
+    min-height: 2.5rem;
+  }
+
+  /* First Four inline on mobile */
+  .mobile-app .first-four {
+    margin-bottom: 1.25rem;
+  }
+
+  .mobile-app .first-four-games {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  /* Mobile Final Four */
+  .mobile-final-four {
+    padding: 0;
+  }
+
+  .mobile-champion-display {
+    text-align: center;
+    background: var(--gray-warm);
+    border: 2px solid var(--blue-highlight);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-top: 0.75rem;
+  }
+
+  /* Bottom tab bar */
+  .mobile-tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    background: rgba(0, 0, 0, 0.95);
+    border-top: 1px solid var(--gray-border);
+    padding: 0.35rem 0 calc(0.35rem + env(safe-area-inset-bottom));
+  }
+
+  .mobile-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.35rem 0;
+    background: none;
+    border: none;
+    color: var(--gray-mid);
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+
+  .mobile-tab--active {
+    color: var(--blue-highlight);
+  }
+
+  .mobile-tab-label {
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  /* Clear space for fixed tab bar + safe area */
+  .mobile-app > .data-sources {
+    padding-bottom: calc(3.5rem + env(safe-area-inset-bottom));
+  }
 }

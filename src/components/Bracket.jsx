@@ -2,10 +2,11 @@ import Region from './Region';
 import Game from './Game';
 import OddsTracker from './OddsTracker';
 import FirstFour from './FirstFour';
+import DownloadButton from './DownloadButton';
 import { getPathProbForGame, getNormalizedMatchupOddsForGame, formatOdds, formatVegasChampOdds } from '../utils/odds';
 import { SITE_DOMAIN } from '../config';
 
-export default function Bracket({ picks, makePick, getGameTeams, gameTree, teamsById, odds, firstFourData, makeFFPick }) {
+export default function Bracket({ picks, makePick, getGameTeams, gameTree, teamsById, odds, firstFourData, makeFFPick, reset, fillRandomRound, fillRandomBracket }) {
   const renderFinalGame = (gameId) => {
     const [team1, team2] = getGameTeams(gameId);
     const pathProb = getPathProbForGame(gameId, gameTree, picks, getGameTeams);
@@ -26,8 +27,18 @@ export default function Bracket({ picks, makePick, getGameTeams, gameTree, teams
   return (
     <div className="bracket" id="bracket-root">
       <div className="bracket-header bracket-header--sticky">
-        <h1 className="app-title">MARCH MADNESS 2026</h1>
-        <OddsTracker odds={odds} />
+        <div className="header-actions header-actions--left">
+          <button className="header-btn" onClick={fillRandomRound}>RANDOM ROUND</button>
+          <button className="header-btn" onClick={fillRandomBracket}>RANDOM BRACKET</button>
+        </div>
+        <div className="header-center">
+          <h1 className="app-title">MARCH MADNESS 2026</h1>
+          <OddsTracker odds={odds} />
+        </div>
+        <div className="header-actions header-actions--right">
+          <DownloadButton />
+          <button className="header-btn" onClick={reset}>RESET</button>
+        </div>
       </div>
       <div className="bracket-sides">
         <div className="bracket-side bracket-side--left">

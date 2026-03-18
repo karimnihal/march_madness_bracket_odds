@@ -1,9 +1,10 @@
+import { lazy, Suspense } from 'react';
 import useBracket from './hooks/useBracket';
-import OddsTracker from './components/OddsTracker';
-import FirstFour from './components/FirstFour';
-import Bracket from './components/Bracket';
-import DownloadButton from './components/DownloadButton';
+import useIsMobile from './hooks/useIsMobile';
 import DataSources from './components/DataSources';
+
+const Bracket = lazy(() => import('./components/Bracket'));
+const MobileBracket = lazy(() => import('./components/MobileBracket'));
 
 export default function App() {
   const {
@@ -20,12 +21,23 @@ export default function App() {
     firstFourData,
   } = useBracket();
 
+  const isMobile = useIsMobile();
+
+  const sharedProps = {
+    picks, makePick, makeFFPick, getGameTeams, odds, reset,
+    fillRandomRound, fillRandomBracket, gameTree, teamsById, firstFourData,
+  };
+
+  if (isMobile) {
+    return (
+      <Suspense fallback={<div className="mobile-loading">Loading...</div>}>
+        <MobileBracket {...sharedProps} />
+      </Suspense>
+    );
+  }
+
   return (
-    <>
-      <div className="desktop-only-gate">
-        <h1>MARCH MADNESS<br />BRACKET PICKER</h1>
-        <p>This app requires a desktop browser at 1100px or wider. Open it on your laptop or desktop to pick your bracket.</p>
-      </div>
+    <Suspense fallback={null}>
       <div className="app">
         <Bracket
           picks={picks}
@@ -36,15 +48,12 @@ export default function App() {
           odds={odds}
           firstFourData={firstFourData}
           makeFFPick={makeFFPick}
+          reset={reset}
+          fillRandomRound={fillRandomRound}
+          fillRandomBracket={fillRandomBracket}
         />
-        <div className="action-buttons">
-          <DownloadButton />
-          <button className="reset-btn" onClick={reset}>RESET BRACKET</button>
-          <button className="reset-btn" onClick={fillRandomRound}>RANDOM FILL REST OF ROUND</button>
-          <button className="reset-btn random-btn" onClick={fillRandomBracket}>RANDOM FILL REST OF BRACKET</button>
-        </div>
         <DataSources />
       </div>
-    </>
+    </Suspense>
   );
 }
