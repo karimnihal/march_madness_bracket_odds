@@ -1,7 +1,7 @@
 import Game from './Game';
 import { getPathProbForGame, getNormalizedMatchupOddsForGame, formatOdds, formatVegasChampOdds } from '../utils/odds';
 
-export default function MobileFinalFour({ picks, makePick, getGameTeams, gameTree, teamsById, onPickComplete }) {
+export default function MobileFinalFour({ picks, makePick, getGameTeams, gameTree, teamsById, odds, onPickComplete }) {
   const renderGame = (gameId) => {
     const [team1, team2] = getGameTeams(gameId);
     const pathProb = getPathProbForGame(gameId, gameTree, picks, getGameTeams);
@@ -55,6 +55,13 @@ export default function MobileFinalFour({ picks, makePick, getGameTeams, gameTre
               <span className="champ-odds-value champ-odds-value--american">{formatVegasChampOdds(teamsById[picks['CHAMP']])}</span>
             </div>
           </div>
+        </div>
+      )}
+
+      {odds?.total != null && (
+        <div className="mobile-exact-odds">
+          <div className="mobile-exact-odds-label">EXACT BRACKET ODDS</div>
+          <div className="mobile-exact-odds-value">{formatOdds(odds.total)}</div>
         </div>
       )}
     </div>

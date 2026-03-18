@@ -17,6 +17,11 @@
   --desktop-center-width: calc((var(--desktop-game-width) * 2) + (var(--desktop-final-gap) * 2) + var(--desktop-champ-width));
   --desktop-region-width: calc((var(--desktop-game-width) * 4) + (var(--desktop-round-gap) * 3));
   --desktop-bracket-width: calc((var(--desktop-region-width) * 2) + var(--desktop-center-width));
+  --panelHeightPortrait: clamp(360px, 80vh, 720px);
+  --panelWidthLandscape: clamp(360px, 30vw, 620px);
+  --navRailWidth: 3.75rem;
+  /* Overlay top offset (below header). JS measures sticky header height on desktop. */
+  --overlayTop: 0px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -54,14 +59,26 @@ body {
   .round--e8 { padding: 3rem 0; }
   .header-actions--left,
   .header-actions--right { min-width: 160px; }
-  .header-btn { font-size: 0.58rem; padding: 0.3rem 0.45rem; }
-  .header-actions .download-btn { font-size: 0.58rem; padding: 0.3rem 0.45rem; }
+  .header-btn { font-size: 0.68rem; padding: 0.4rem 0.65rem; }
+  .header-actions .download-btn { font-size: 0.68rem; padding: 0.4rem 0.65rem; }
+  /* overlay top is measured at runtime */
 }
 
 @media (max-height: 500px) {
   .bracket-header--sticky { padding-bottom: 0.25rem; }
   .app-title { font-size: 1.6rem; padding: 0.5rem 0 0.15rem; }
   .odds-total { padding: 0.1rem 0 0.5rem; }
+  /* overlay top is measured at runtime */
+}
+
+@media (max-width: 700px) {
+  .bracket-header--sticky {
+    padding: 0.65rem 0.6rem 0.6rem;
+  }
+  .header-actions { gap: 0.25rem; }
+  .header-btn { font-size: 0.7rem; padding: 0.45rem 0.7rem; }
+  .header-actions .download-btn { font-size: 0.7rem; padding: 0.45rem 0.7rem; }
+  /* overlay top is measured at runtime */
 }
 
 
@@ -318,12 +335,12 @@ body {
   top: 0;
   z-index: 50;
   background: linear-gradient(to bottom, rgba(0,0,0,0.98), rgba(0,0,0,0.96) 60%, rgba(0,0,0,0.92));
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.7rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0.5rem 0.5rem;
+  padding: 0.75rem 0.75rem 0.7rem;
 }
 
 .header-center {
@@ -355,9 +372,9 @@ body {
 .header-btn {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   letter-spacing: 0.06em;
-  padding: 0.35rem 0.6rem;
+  padding: 0.45rem 0.75rem;
   background: transparent;
   color: var(--gray-lowlight);
   border: 1px solid var(--gray-border);
@@ -373,8 +390,8 @@ body {
 
 .header-actions .download-btn {
   min-width: unset;
-  padding: 0.35rem 0.6rem;
-  font-size: 0.65rem;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 0.06em;
 }
 
@@ -423,13 +440,15 @@ body.capture-mode .bracket,
   padding: 0.5rem 0;
 }
 
-.app .bracket-zoom-container {
+.app .bracket-zoom-container,
+.capture-fixed .bracket-zoom-container {
   width: 100%;
   overflow-x: auto;
   overflow-y: visible;
 }
 
-.app .bracket-sides {
+.app .bracket-sides,
+.capture-fixed .bracket-sides {
   display: flex;
   align-items: center;
   gap: 0;
@@ -540,6 +559,14 @@ body.capture-mode .bracket-watermark,
   top: 88%; /* align with bottom R32 teams vertically */
 }
 
+/* Never include mobile overlay UI in exports */
+.capture-fixed .overlay-shell,
+.capture-fixed .overlay-backdrop,
+.capture-fixed .overlay-nav,
+.capture-fixed .overlay-panel {
+  display: none !important;
+}
+
 /* Match EXACT BRACKET ODDS label style */
 .bracket-watermark-line1 {
   font-weight: 400;
@@ -618,26 +645,30 @@ body.capture-mode .bracket-watermark,
 }
 
 /* Keep desktop geometry fixed on non-mobile app path */
-.app .bracket .game {
+.app .bracket .game,
+.capture-fixed.bracket .game {
   width: var(--desktop-game-width);
   min-width: var(--desktop-game-width);
   max-width: var(--desktop-game-width);
   font-size: 0.78rem;
 }
 
-.app .bracket .ff-game {
+.app .bracket .ff-game,
+.capture-fixed.bracket .ff-game {
   width: var(--desktop-game-width);
   min-width: var(--desktop-game-width);
   max-width: var(--desktop-game-width);
   font-size: 0.78rem;
 }
 
-.app .bracket .first-four-games {
+.app .bracket .first-four-games,
+.capture-fixed.bracket .first-four-games {
   grid-template-columns: repeat(2, minmax(0, var(--desktop-game-width)));
   gap: 0.65rem 0.9rem;
 }
 
-.app .bracket .bracket-center {
+.app .bracket .bracket-center,
+.capture-fixed.bracket .bracket-center {
   width: var(--desktop-center-width);
   min-width: var(--desktop-center-width);
   max-width: var(--desktop-center-width);
@@ -650,7 +681,8 @@ body.capture-mode .bracket-watermark,
   z-index: 2;
 }
 
-.app .championship-center {
+.app .championship-center,
+.capture-fixed .championship-center {
   flex: 0 0 auto;
   width: var(--desktop-champ-width);
   min-width: var(--desktop-champ-width);
@@ -770,6 +802,12 @@ body.capture-mode .bracket-watermark,
   transition: opacity 0.15s;
 }
 
+.download-btn.download-btn--inverted {
+  background: rgba(0, 0, 0, 0.92);
+  color: var(--white);
+  border: 1px solid var(--gray-border);
+}
+
 .download-btn:hover {
   opacity: 0.85;
 }
@@ -787,13 +825,19 @@ body.capture-mode .bracket-watermark,
   overflow: hidden;
 }
 
+.export-dropdown.export-dropdown--left {
+  left: 0;
+  right: auto;
+}
+
 .export-option {
   display: block;
   width: 100%;
-  padding: 0.45rem 0.75rem;
+  padding: 0.65rem 0.9rem;
+  min-height: 2.25rem;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   letter-spacing: 0.08em;
   background: none;
   color: var(--white);
@@ -801,6 +845,14 @@ body.capture-mode .bracket-watermark,
   cursor: pointer;
   text-align: left;
   transition: background 0.1s;
+}
+
+@media (max-width: 700px), (max-height: 500px) {
+  .export-option {
+    padding: 0.85rem 1rem;
+    min-height: 2.75rem;
+    font-size: 0.9rem;
+  }
 }
 
 .export-option:hover {
@@ -816,6 +868,8 @@ body.capture-mode .bracket-watermark,
   margin-top: 2rem;
   border-top: 1px solid var(--gray-border);
   padding-top: 1rem;
+  /* Ensure bottom nav/panels never cover this section */
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom));
 }
 
 .data-sources-toggle {
@@ -915,14 +969,14 @@ body.capture-mode .bracket-watermark,
   color: var(--gray-mid);
 }
 
-.mobile-app {
-  display: none;
-}
-
-@media (max-width: 767px) {
-  /* Hide desktop, show mobile */
-  .app { display: none !important; }
-  .mobile-app { display: flex; flex-direction: column; min-height: 100vh; }
+/* Mobile mode is driven by ResponsiveOverview class, not viewport width.
+   This keeps mobile UI stable in landscape and under zoom/devtools. */
+.responsive-root--mobile {
+  /* Single DOM: keep .app visible; show mobile header/overview behavior */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  --overlayTop: 4.5rem;
 
   /* Mobile header */
   .mobile-header {
@@ -977,27 +1031,6 @@ body.capture-mode .bracket-watermark,
     letter-spacing: 0.04em;
   }
 
-  /* Swipe panels */
-  .mobile-panels {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .mobile-panels::-webkit-scrollbar { display: none; }
-
-  .mobile-panel {
-    min-width: 100%;
-    max-width: 100%;
-    scroll-snap-align: start;
-    padding: 0.75rem 0.75rem calc(3.5rem + env(safe-area-inset-bottom) + 1rem);
-    overflow-y: auto;
-    max-height: calc(100vh - 4.5rem);
-    max-height: calc(100dvh - 4.5rem);
-  }
-
   /* Mobile region */
   .mobile-region-title {
     font-weight: 900;
@@ -1042,31 +1075,35 @@ body.capture-mode .bracket-watermark,
   }
 
   /* Game tiles full-width + larger tap targets */
-  .mobile-app .game {
+  .responsive-root .game {
     min-width: unset;
     width: 100%;
   }
 
-  .mobile-app .game-slot {
+  .responsive-root .game-slot {
     padding: 0.5rem 0.75rem;
     min-height: 2.75rem;
   }
 
-  .mobile-app .ff-game {
+  .responsive-root .ff-game {
     width: 100%;
   }
 
-  .mobile-app .ff-slot {
+.overlay-panel-inner .ff-game {
+  width: 100%;
+}
+
+  .responsive-root .ff-slot {
     padding: 0.45rem 0.75rem;
     min-height: 2.5rem;
   }
 
   /* First Four inline on mobile */
-  .mobile-app .first-four {
+  .responsive-root .first-four {
     margin-bottom: 1.25rem;
   }
 
-  .mobile-app .first-four-games {
+  .responsive-root .first-four-games {
     grid-template-columns: 1fr;
     gap: 0.5rem;
   }
@@ -1085,131 +1122,286 @@ body.capture-mode .bracket-watermark,
     margin-top: 0.75rem;
   }
 
-  /* Bottom tab bar */
-  .mobile-tab-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    display: flex;
-    background: rgba(0, 0, 0, 0.95);
-    border-top: 1px solid var(--gray-border);
-    padding: 0.35rem 0 calc(0.35rem + env(safe-area-inset-bottom));
-  }
+.mobile-exact-odds {
+  margin-top: 0.75rem;
+  text-align: center;
+  padding: 0.75rem;
+  border: 1px solid var(--gray-border);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.25);
+}
 
-  .mobile-tab {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.15rem;
-    padding: 0.35rem 0;
-    background: none;
-    border: none;
-    color: var(--gray-mid);
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: color 0.15s;
-  }
+.mobile-exact-odds-label {
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--gray-mid);
+}
 
-  .mobile-tab--active {
-    color: var(--blue-highlight);
-  }
+.mobile-exact-odds-value {
+  margin-top: 0.25rem;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--blue-highlight);
+}
 
-  .mobile-tab-label {
-    font-size: 0.55rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-  }
-
-  /* The panel containing the full bracket overview must not scroll —
-     the overview handles its own pan/zoom via transforms */
-  .mobile-panel:has(.mobile-overview) {
-    overflow: hidden !important;
-    touch-action: none;
-  }
-
-  /* Mobile bracket overview (Full tab) */
-  .mobile-overview {
-    overflow: hidden;
-    touch-action: none;
-    width: 100%;
-    height: calc(100vh - 4.5rem - 3.5rem - env(safe-area-inset-bottom));
-    height: calc(100dvh - 4.5rem - 3.5rem - env(safe-area-inset-bottom));
-    position: relative;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-
-  .mobile-overview-inner {
-    pointer-events: none;
-  }
-
-  .mobile-overview .bracket-header--sticky {
-    position: relative;
-    z-index: auto;
-  }
-
-  .mobile-overview .header-actions {
+  /* Mobile: hide the desktop sticky header (mobile header replaces it) */
+  .bracket-header--sticky {
     display: none;
-  }
-
-  .mobile-overview .bracket-center .first-four {
-    display: none;
-  }
-
-  .mobile-overview .bracket-watermark {
-    display: none;
-  }
-
-  .mobile-overview .bracket {
-    position: static;
-  }
-
-  /* Clear space for fixed tab bar + safe area */
-  .mobile-app > .data-sources {
-    padding-bottom: calc(3.5rem + env(safe-area-inset-bottom));
   }
 }
 
-/* Mobile landscape — compact header and tab bar */
-@media (max-width: 767px) and (orientation: landscape) {
-  .mobile-header {
-    padding: 0.2rem 0.5rem 0.15rem;
+/* Compact mobile header when very constrained */
+@media (max-height: 480px) {
+  .responsive-root--mobile .mobile-header {
+    padding: 0.2rem 0.4rem 0.15rem;
   }
-
-  .mobile-header .odds-total {
+  .responsive-root--mobile .mobile-header .odds-total {
     display: none;
   }
-
-  .mobile-title {
+  .responsive-root--mobile .mobile-title {
     font-size: 0.9rem;
   }
-
-  .mobile-tab-bar {
-    padding: 0.2rem 0 calc(0.2rem + env(safe-area-inset-bottom));
+  .responsive-root--mobile {
+    --overlayTop: 2.5rem;
   }
+}
 
-  .mobile-tab {
-    font-size: 0.85rem;
-    padding: 0.2rem 0;
-  }
+/* Overlay shell (mobile panels) */
+.overlay-shell {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 150;
+}
 
-  .mobile-tab-label {
-    display: none;
-  }
+.overlay-shell * {
+  pointer-events: auto;
+}
 
-  .mobile-panel {
-    padding: 0.5rem 0.75rem;
-    max-height: calc(100vh - 2rem - 2.5rem);
-    max-height: calc(100dvh - 2rem - 2.5rem);
-  }
+.overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
 
-  .mobile-overview {
-    height: calc(100vh - 2rem - 2.5rem - env(safe-area-inset-bottom));
-    height: calc(100dvh - 2rem - 2.5rem - env(safe-area-inset-bottom));
-  }
+.overlay-nav {
+  position: absolute;
+  display: flex;
+  gap: 0.25rem;
+  background: rgba(0, 0, 0, 0.92);
+  border-top: 1px solid var(--gray-border);
+  border-left: 1px solid var(--gray-border);
+}
+
+.overlay-nav-btn {
+  flex: 1;
+  border: none;
+  background: none;
+  color: var(--gray-mid);
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  font-size: 1.05rem;
+  padding: 0.75rem 0;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.overlay-nav-btn--toggle {
+  flex: 0 0 auto;
+  width: 2.25rem;
+  min-width: 2.25rem;
+  padding: 0;
+}
+
+.overlay-nav-btn--active {
+  color: var(--blue-highlight);
+}
+
+.overlay-panel {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.98);
+  border: 1px solid var(--gray-border);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.overlay-panel-inner {
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.75rem 0.75rem 1rem;
+  width: 100%;
+}
+
+.overlay-close {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  background: var(--white);
+  color: var(--black);
+  border: none;
+  cursor: pointer;
+}
+
+/* Make overlay panels use the same \"mobile panel\" sizing everywhere (including desktop) */
+.overlay-panel-inner .mobile-round-tab {
+  width: 100%;
+}
+
+.overlay-panel-inner .mobile-round-label {
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--gray-lowlight);
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+
+.overlay-panel-inner .mobile-round-games {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.overlay-panel-inner .game {
+  min-width: unset;
+  width: 100%;
+}
+
+.overlay-panel-inner .game-slot {
+  padding: 0.5rem 0.75rem;
+  min-height: 2.75rem;
+}
+
+.overlay-panel-inner .ff-game {
+  width: 100%;
+}
+
+.overlay-panel-inner .ff-slot {
+  padding: 0.45rem 0.75rem;
+  min-height: 2.5rem;
+}
+
+/* Portrait: bottom nav + bottom sheet */
+.overlay--portrait .overlay-nav {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.35rem 0.35rem calc(0.35rem + env(safe-area-inset-bottom));
+}
+
+.overlay--portrait .overlay-panel {
+  left: 0;
+  right: 0;
+  bottom: calc(3.9rem + env(safe-area-inset-bottom));
+  height: var(--panelHeightPortrait);
+  transform: translateY(120%);
+  transition: transform 180ms ease, opacity 180ms ease, visibility 0s linear 180ms;
+}
+
+.overlay--portrait.overlay--open .overlay-panel {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+/* Landscape: left rail + left drawer */
+.overlay--landscape .overlay-nav {
+  top: var(--overlayTop);
+  bottom: 0;
+  left: 0;
+  width: var(--navRailWidth);
+  flex-direction: column;
+  padding: 0.5rem 0.25rem calc(0.5rem + env(safe-area-inset-bottom));
+  border-top: none;
+  border-left: none;
+  border-right: 1px solid var(--gray-border);
+}
+
+.overlay--landscape.overlay--nav-hidden .overlay-nav {
+  width: 0;
+  padding: 0;
+  border-right: none;
+  overflow: hidden;
+}
+
+.overlay--landscape.overlay--nav-hidden .overlay-panel {
+  display: none;
+}
+
+.overlay--landscape.overlay--nav-hidden .overlay-backdrop {
+  display: none;
+}
+
+/* When nav is hidden, show only the toggle button as a handle */
+.overlay--landscape.overlay--nav-hidden .overlay-nav-btn {
+  display: none;
+}
+
+.overlay--landscape.overlay--nav-hidden .overlay-nav-btn--toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: -0.5rem;
+  bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  height: 3.5rem;
+  width: 2.75rem;
+  background: rgba(0, 0, 0, 0.92);
+  border: 1px solid var(--gray-border);
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+}
+
+.overlay--landscape .overlay-nav-btn {
+  padding: 0.5rem 0;
+}
+
+.overlay--landscape .overlay-nav-btn--toggle {
+  margin-top: auto;
+}
+
+.overlay--landscape .overlay-panel {
+  top: var(--overlayTop);
+  bottom: 0;
+  left: var(--navRailWidth);
+  width: var(--panelWidthLandscape);
+  transform: translateX(-120%);
+  transition: transform 180ms ease, opacity 180ms ease, visibility 0s linear 180ms;
+}
+
+.overlay--landscape.overlay--open .overlay-panel {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+
+/* Desktop/tablet (non-mobile mode): hide mobile header; show desktop sticky header */
+.responsive-root--desktop .mobile-header {
+  display: none;
+}
+.responsive-root--desktop .bracket-header--sticky {
+  display: flex;
+}
+
+/* Full tab: show bracket \"as-is\" with normal scrolling */
+.responsive-root--mobile .mobile-full {
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 0;
 }

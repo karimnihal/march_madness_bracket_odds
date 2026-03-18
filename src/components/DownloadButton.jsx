@@ -49,7 +49,7 @@ async function captureCanvas() {
   }
 }
 
-export default function DownloadButton() {
+export default function DownloadButton({ getShareURL }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -111,6 +111,17 @@ export default function DownloadButton() {
 
   const canShare = typeof navigator !== 'undefined' && navigator.share && navigator.canShare;
 
+  const copyLink = async () => {
+    setOpen(false);
+    try {
+      const url = typeof getShareURL === 'function' ? getShareURL() : window.location.href;
+      await navigator.clipboard.writeText(url);
+      triggerToast('Link copied!');
+    } catch {
+      triggerToast('Copy failed');
+    }
+  };
+
   return (
     <div className="export-wrapper" ref={ref}>
       <button className="download-btn" onClick={() => setOpen(!open)}>
@@ -118,6 +129,7 @@ export default function DownloadButton() {
       </button>
       {open && (
         <div className="export-dropdown">
+          <button className="export-option" onClick={copyLink}>COPY LINK</button>
           <button className="export-option" onClick={copyToClipboard}>COPY IMAGE</button>
           <button className="export-option" onClick={exportPNG}>SAVE PNG</button>
           <button className="export-option" onClick={exportPDF}>SAVE PDF</button>

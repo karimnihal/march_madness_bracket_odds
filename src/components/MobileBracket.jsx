@@ -5,26 +5,11 @@ import MobileBracketOverview from './MobileBracketOverview';
 import FirstFour from './FirstFour';
 import OddsTracker from './OddsTracker';
 import DownloadButton from './DownloadButton';
+import ControlsDropdown from './ControlsDropdown';
 import DataSources from './DataSources';
 import { triggerToast } from './Toast';
 
-const TABS = ['First Four', 'R64', 'R32', 'S16', 'E8', 'Championship', 'Full'];
-
-const REGIONS = ['East', 'South', 'West', 'Midwest'];
-const ROUND_GAME_IDS = {};
-for (const { tab, prefix, count } of [
-  { tab: 'R64', prefix: 'R64', count: 8 },
-  { tab: 'R32', prefix: 'R32', count: 4 },
-  { tab: 'S16', prefix: 'S16', count: 2 },
-  { tab: 'E8',  prefix: 'E8',  count: 1 },
-]) {
-  const ids = [];
-  for (const region of REGIONS) {
-    for (let i = 1; i <= count; i++) ids.push(`${region}-${prefix}-${i}`);
-  }
-  ROUND_GAME_IDS[tab] = ids;
-}
-const CHAMP_GAME_IDS = ['F4-1', 'F4-2', 'CHAMP'];
+import { TABS, ROUND_GAME_IDS, CHAMP_GAME_IDS, SHORT, LABELS } from './mobileTabs/constants';
 
 export default function MobileBracket({ picks, makePick, makeFFPick, getGameTeams, odds, reset, fillRandomRound, fillRandomBracket, gameTree, teamsById, firstFourData, getShareURL }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -168,24 +153,16 @@ export default function MobileBracket({ picks, makePick, makeFFPick, getGameTeam
     );
   };
 
-  const SHORT = { 'First Four': 'FF', 'R64': '64', 'R32': '32', 'S16': '16', 'E8': 'E8', 'Championship': 'CH', 'Full': 'ALL' };
-  const LABELS = { 'First Four': 'First 4', 'R64': 'Rd of 64', 'R32': 'Rd of 32', 'S16': 'Sweet 16', 'E8': 'Elite 8', 'Championship': 'Champ', 'Full': 'Full' };
-
   return (
     <div className="mobile-app">
       <div className="mobile-header">
         <div className="mobile-header-row">
           <div className="mobile-header-left">
-            <button className="header-btn" onClick={fillRandomRound}>RND</button>
-            <button className="header-btn" onClick={fillRandomBracket}>ALL</button>
+            <ControlsDropdown fillRandomRound={fillRandomRound} fillRandomBracket={fillRandomBracket} reset={reset} />
           </div>
           <h1 className="mobile-title">MM 2026</h1>
           <div className="mobile-header-right">
-            <button className="header-btn" onClick={() => {
-              navigator.clipboard.writeText(getShareURL()).then(() => triggerToast('Link copied!'));
-            }}>LINK</button>
-            <DownloadButton />
-            <button className="header-btn" onClick={reset}>RST</button>
+            <DownloadButton getShareURL={getShareURL} />
           </div>
         </div>
         <OddsTracker odds={odds} />

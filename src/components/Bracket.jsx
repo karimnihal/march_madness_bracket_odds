@@ -3,7 +3,7 @@ import Game from './Game';
 import OddsTracker from './OddsTracker';
 import FirstFour from './FirstFour';
 import DownloadButton from './DownloadButton';
-import { triggerToast } from './Toast';
+import ControlsDropdown from './ControlsDropdown';
 import { getPathProbForGame, getNormalizedMatchupOddsForGame, formatOdds, formatVegasChampOdds } from '../utils/odds';
 import { SITE_DOMAIN } from '../config';
 
@@ -29,19 +29,14 @@ export default function Bracket({ picks, makePick, getGameTeams, gameTree, teams
     <div className="bracket" id="bracket-root">
       <div className="bracket-header bracket-header--sticky">
         <div className="header-actions header-actions--left">
-          <button className="header-btn" onClick={fillRandomRound}>RANDOM ROUND</button>
-          <button className="header-btn" onClick={fillRandomBracket}>RANDOM BRACKET</button>
+          <ControlsDropdown fillRandomRound={fillRandomRound} fillRandomBracket={fillRandomBracket} reset={reset} />
         </div>
         <div className="header-center">
           <h1 className="app-title">MARCH MADNESS 2026</h1>
           <OddsTracker odds={odds} />
         </div>
         <div className="header-actions header-actions--right">
-          <button className="header-btn" onClick={() => {
-            navigator.clipboard.writeText(getShareURL()).then(() => triggerToast('Link copied!'));
-          }}>COPY LINK</button>
-          <DownloadButton />
-          <button className="header-btn" onClick={reset}>RESET</button>
+          <DownloadButton getShareURL={getShareURL} />
         </div>
       </div>
       <div className="bracket-zoom-container">
