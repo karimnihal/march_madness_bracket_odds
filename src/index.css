@@ -1,0 +1,713 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,800;0,900;1,800;1,900&display=swap');
+
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+  --blue-highlight: #1D6FE8;
+  --blue-dim: #1249A3;
+  --gray-lowlight: #8A8370;
+  --gray-warm: #2A2A2A;
+  --gray-border: #333333;
+  --gray-mid: #555555;
+  --font-display: 'Barlow Condensed', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-display);
+  background: var(--black);
+  color: var(--white);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Desktop-only gate */
+.desktop-only-gate {
+  display: none;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+.desktop-only-gate h1 {
+  font-weight: 900;
+  font-style: italic;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.desktop-only-gate p {
+  color: var(--gray-lowlight);
+  font-size: 1.1rem;
+}
+
+@media (max-width: 1099px) {
+  .desktop-only-gate { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
+  .app { display: none !important; }
+}
+
+/* App */
+.app {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+}
+
+.app-title {
+  font-weight: 900;
+  font-style: normal;
+  font-size: 2.2rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  padding: 1.5rem 0 0.25rem;
+}
+
+/* Action buttons (reset + download) */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2rem auto 0;
+}
+
+.reset-btn {
+  display: block;
+  min-width: 280px;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  background: transparent;
+  color: var(--gray-lowlight);
+  border: 1px solid var(--gray-border);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.reset-btn:hover {
+  color: var(--white);
+  border-color: var(--white);
+}
+
+/* Odds Total */
+.odds-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.25rem 0 1rem;
+}
+
+.odds-total-label {
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--gray-mid);
+  line-height: 1;
+}
+
+.odds-total-info {
+  background: none;
+  border: none;
+  color: var(--gray-mid);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0 0.2rem;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.odds-total-info:hover {
+  color: var(--blue-highlight);
+}
+
+.odds-total-value {
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1.2rem;
+  color: var(--blue-highlight);
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+/* First Four */
+.first-four {
+  padding: 0.5rem 0 1rem;
+}
+
+.first-four-title {
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: var(--gray-lowlight);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.first-four-games {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 160px));
+  gap: 0.75rem 1rem;
+  justify-content: center;
+}
+
+.ff-game {
+  background: var(--gray-warm);
+  border: 1px solid var(--gray-border);
+  border-radius: 3px;
+  overflow: hidden;
+  width: 160px;
+  flex: 0 0 auto;
+  font-size: 0.8rem;
+}
+
+.ff-game--picked {
+  border-color: var(--blue-highlight);
+}
+
+.ff-slot {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.ff-slot:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ff-slot--picked {
+  background: rgba(29, 111, 232, 0.08);
+}
+
+.ff-slot--picked .team-name {
+  color: var(--white);
+}
+
+.ff-slot--picked .team-odds {
+  color: var(--blue-highlight);
+}
+
+.ff-slot--loser .team-name,
+.ff-slot--loser .team-odds {
+  color: var(--gray-lowlight);
+}
+
+/* Game tile */
+.game {
+  background: var(--gray-warm);
+  border: 1px solid var(--gray-border);
+  border-radius: 3px;
+  overflow: hidden;
+  min-width: 160px;
+  font-size: 0.8rem;
+}
+
+.game--empty {
+  opacity: 0.3;
+}
+
+.game--picked {
+  border-color: var(--blue-highlight);
+}
+
+.game-slot {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  transition: background 0.1s;
+  min-height: 1.6rem;
+}
+
+.game-slot:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.game-slot--empty {
+  cursor: default;
+}
+
+.game-slot--picked {
+  background: rgba(29, 111, 232, 0.08);
+}
+
+.game-slot--picked .team-name {
+  color: var(--white);
+}
+
+.game-slot--picked .team-odds {
+  color: var(--blue-highlight);
+}
+
+.game-slot--loser .team-name,
+.game-slot--loser .team-odds,
+.game-slot--loser .team-seed {
+  color: var(--gray-lowlight);
+}
+
+.game-slot--placeholder {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.team-seed {
+  font-weight: 600;
+  font-size: 0.65rem;
+  color: var(--gray-mid);
+  min-width: 1.2rem;
+  text-align: right;
+}
+
+.team-name {
+  font-weight: 800;
+  font-style: italic;
+  font-size: 0.8rem;
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.team-odds {
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--gray-mid);
+  white-space: nowrap;
+}
+
+/* Bracket layout */
+.bracket {
+  padding: 1rem 0;
+  position: relative;
+}
+
+.bracket-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.bracket-header--sticky {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.98), rgba(0,0,0,0.96) 60%, rgba(0,0,0,0.92));
+  padding-bottom: 0.5rem;
+}
+
+.bracket-header--inline {
+  display: none;
+  margin-bottom: 0.75rem;
+}
+
+/* During image capture, use inline header (between brackets) instead of sticky header */
+body.capture-mode .bracket-header--sticky {
+  display: none;
+}
+
+body.capture-mode .bracket-header--inline {
+  display: flex;
+  margin-bottom: 0.35rem;
+}
+
+body.capture-mode .app-title {
+  white-space: nowrap;
+}
+
+body.capture-mode .odds-total {
+  white-space: nowrap;
+}
+
+/* Hide info icon in downloaded image */
+body.capture-mode .odds-total-info {
+  display: none;
+}
+
+/* Shift title and Exact Bracket Odds up so champ box fits in download image */
+body.capture-mode .bracket {
+  padding: 0.5rem 0;
+}
+
+body.capture-mode .bracket-center {
+  padding: 0 0.25rem;
+}
+
+body.capture-mode .final-four {
+  padding: 1rem 0;
+}
+
+.bracket-sides {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.game-exact-path-odds {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.2rem 0.5rem 0.25rem;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.game-derived-odds {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.2rem 0.5rem 0.3rem;
+  border-top: 1px solid var(--gray-border);
+}
+
+.game-derived-odds-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.game-matchup-prob-label {
+  font-weight: 400;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--gray-mid);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.game-matchup-prob-value {
+  font-weight: 900;
+  font-size: 0.78rem;
+  color: var(--blue-highlight);
+  line-height: 1;
+  white-space: nowrap;
+  min-width: 3.8rem;
+  text-align: right;
+}
+
+.game-matchup-prob-value--empty {
+  color: var(--gray-lowlight);
+}
+
+.bracket-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.bracket-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  padding: 0 0.5rem;
+}
+
+/* First Four overlayed between East/West, above Final Four */
+.first-four--overlay {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 8.5rem; /* slightly lower for better alignment */
+  z-index: 20;
+}
+
+body.capture-mode .first-four--overlay {
+  top: 1.5rem; /* align with East/West region labels */
+}
+
+.bracket-watermark {
+  display: none;
+  text-align: center;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-family: var(--font-display);
+}
+
+body.capture-mode .bracket-watermark {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 88%; /* align with bottom R32 teams vertically */
+}
+
+/* Match EXACT BRACKET ODDS label style */
+.bracket-watermark-line1 {
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--gray-mid);
+  line-height: 1;
+}
+
+.bracket-watermark-line2 {
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1.5rem;
+  color: var(--blue-highlight);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Region */
+.region {
+  padding: 0.5rem 0;
+}
+
+.region-title {
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+}
+
+/* Right-side regions: push titles to far right above bracket */
+.region--right .region-title {
+  text-align: right;
+  margin-left: auto;
+}
+
+.region-rounds {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.region--left .region-rounds {
+  flex-direction: row;
+}
+
+.region--right .region-rounds {
+  flex-direction: row-reverse;
+}
+
+.round {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 0.4rem;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Progressively space games in later rounds */
+.round--r32 { padding: 1rem 0; }
+.round--s16 { padding: 3rem 0; }
+.round--e8 { padding: 6rem 0; }
+
+/* Final Four */
+.final-four {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.final-four-game {
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.championship-center {
+  flex: 0 0 auto;
+  min-width: 220px;
+  max-width: 260px;
+  background: var(--gray-warm);
+  border: 2px solid var(--blue-highlight);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.6);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.championship-game {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.champion-display {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.champion-label {
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray-lowlight);
+}
+
+.champion-name {
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1.4rem;
+  color: var(--blue-highlight);
+}
+
+.champ-odds-block {
+  margin-top: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.champ-odds-label-block,
+.champ-odds-value-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+}
+
+.champ-odds-label {
+  font-weight: 400;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--gray-mid);
+  line-height: 1.2;
+}
+
+.champ-odds-value {
+  font-weight: 900;
+  font-size: 0.78rem;
+  color: var(--blue-highlight);
+  line-height: 1.2;
+}
+
+.champ-odds-value--american {
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* Make slots inside the championship box visually centered and symmetric */
+.championship-center .game {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.championship-center .game-slot {
+  justify-content: center;
+}
+
+.championship-center .team-seed,
+.championship-center .team-name,
+.championship-center .team-odds {
+  text-align: center;
+}
+
+.championship-center .team-name {
+  font-style: normal;
+}
+
+/* Download button */
+.download-btn {
+  display: block;
+  min-width: 280px;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  background: var(--white);
+  color: var(--black);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.download-btn:hover {
+  opacity: 0.85;
+}
+
+.random-btn {
+  margin-top: 0.5rem;
+}
+
+/* Data & Sources */
+.data-sources {
+  margin-top: 2rem;
+  border-top: 1px solid var(--gray-border);
+  padding-top: 1rem;
+}
+
+.data-sources-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--gray-lowlight);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  padding: 0.25rem 0;
+}
+
+.data-sources-toggle:hover {
+  color: var(--white);
+}
+
+.data-sources-toggle-icon {
+  font-size: 1rem;
+  width: 1.2rem;
+  text-align: center;
+}
+
+.data-sources-content {
+  margin-top: 1rem;
+  padding: 0 0.5rem;
+  color: var(--gray-lowlight);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.data-sources-heading {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  margin: 1rem 0 0.4rem;
+}
+
+.data-sources-heading:first-child {
+  margin-top: 0;
+}
+
+.data-sources-list {
+  margin: 0.4rem 0;
+  padding-left: 1.25rem;
+}
+
+.data-sources-para {
+  margin: 0.4rem 0;
+}
+
+.data-sources-link {
+  color: var(--blue-highlight);
+}
+
+.data-sources-citation {
+  font-style: italic;
+}

@@ -1,0 +1,98 @@
+{
+  "_source": "bracketodds.cs.illinois.edu/seed_records.html — 1985 through 2025 (40 tournaments, no 2020)",
+  "_note": "All win rates expressed as P(lower-numbered seed wins). e.g. '1-8' means P(1-seed beats 8-seed). Small-sample matchups (< 8 games) are flagged. Missing matchups use fallback formula in odds.js.",
+
+  "R64": {
+    "_games_per_matchup": 160,
+    "1-16": { "record": "158-2",   "higherSeedWinPct": 0.9875, "games": 160 },
+    "2-15": { "record": "149-11",  "higherSeedWinPct": 0.9313, "games": 160 },
+    "3-14": { "record": "137-23",  "higherSeedWinPct": 0.8563, "games": 160 },
+    "4-13": { "record": "127-33",  "higherSeedWinPct": 0.7938, "games": 160 },
+    "5-12": { "record": "103-57",  "higherSeedWinPct": 0.6438, "games": 160 },
+    "6-11": { "record": "98-62",   "higherSeedWinPct": 0.6125, "games": 160 },
+    "7-10": { "record": "98-62",   "higherSeedWinPct": 0.6125, "games": 160 },
+    "8-9":  { "record": "77-83",   "higherSeedWinPct": 0.4813, "games": 160 }
+  },
+
+  "R32": {
+    "_note": "Only matchups with 4+ historical occurrences included. All others use fallback.",
+    "1-8":  { "record": "61-16",  "higherSeedWinPct": 0.7922, "games": 77 },
+    "1-9":  { "record": "75-6",   "higherSeedWinPct": 0.9259, "games": 81 },
+    "2-7":  { "record": "65-27",  "higherSeedWinPct": 0.7065, "games": 92 },
+    "2-10": { "record": "38-19",  "higherSeedWinPct": 0.6667, "games": 57 },
+    "3-6":  { "record": "49-33",  "higherSeedWinPct": 0.5977, "games": 82 },
+    "3-11": { "record": "35-20",  "higherSeedWinPct": 0.6364, "games": 55 },
+    "4-5":  { "record": "45-37",  "higherSeedWinPct": 0.5488, "games": 82 },
+    "4-12": { "record": "32-13",  "higherSeedWinPct": 0.7111, "games": 45 },
+    "5-13": { "record": "18-3",   "higherSeedWinPct": 0.8571, "games": 21 },
+    "6-14": { "record": "14-2",   "higherSeedWinPct": 0.8750, "games": 16 },
+    "7-15": { "record": "2-4",    "higherSeedWinPct": 0.3333, "games": 6,  "smallSample": true },
+    "10-15":{ "record": "5-0",    "higherSeedWinPct": 1.0000, "games": 5,  "smallSample": true },
+    "11-14":{ "record": "7-0",    "higherSeedWinPct": 1.0000, "games": 7,  "smallSample": true },
+    "12-13":{ "record": "9-3",    "higherSeedWinPct": 0.7500, "games": 12 }
+  },
+
+  "S16": {
+    "_note": "Only matchups with 4+ historical occurrences included.",
+    "1-4":  { "record": "44-18",  "higherSeedWinPct": 0.7097, "games": 62 },
+    "1-5":  { "record": "39-11",  "higherSeedWinPct": 0.7800, "games": 50 },
+    "1-12": { "record": "20-0",   "higherSeedWinPct": 1.0000, "games": 20 },
+    "1-13": { "record": "4-0",    "higherSeedWinPct": 1.0000, "games": 4,  "smallSample": true },
+    "2-3":  { "record": "32-19",  "higherSeedWinPct": 0.6275, "games": 51 },
+    "2-6":  { "record": "25-7",   "higherSeedWinPct": 0.7813, "games": 32 },
+    "2-11": { "record": "15-4",   "higherSeedWinPct": 0.7895, "games": 19 },
+    "3-7":  { "record": "10-6",   "higherSeedWinPct": 0.6250, "games": 16 },
+    "3-10": { "record": "10-4",   "higherSeedWinPct": 0.7143, "games": 14 },
+    "4-8":  { "record": "5-6",    "higherSeedWinPct": 0.4545, "games": 11 },
+    "6-7":  { "record": "5-3",    "higherSeedWinPct": 0.6250, "games": 8  }
+  },
+
+  "E8": {
+    "_note": "Small sample sizes throughout Elite Eight — treat all with caution.",
+    "1-2":  { "record": "27-24",  "higherSeedWinPct": 0.5294, "games": 51 },
+    "1-3":  { "record": "18-10",  "higherSeedWinPct": 0.6429, "games": 28 },
+    "1-6":  { "record": "8-2",    "higherSeedWinPct": 0.8000, "games": 10 },
+    "1-7":  { "record": "4-0",    "higherSeedWinPct": 1.0000, "games": 4,  "smallSample": true },
+    "1-10": { "record": "5-1",    "higherSeedWinPct": 0.8333, "games": 6,  "smallSample": true },
+    "1-11": { "record": "4-4",    "higherSeedWinPct": 0.5000, "games": 8  },
+    "2-4":  { "record": "3-4",    "higherSeedWinPct": 0.4286, "games": 7,  "smallSample": true },
+    "2-8":  { "record": "2-3",    "higherSeedWinPct": 0.4000, "games": 5,  "smallSample": true },
+    "3-4":  { "record": "2-4",    "higherSeedWinPct": 0.3333, "games": 6,  "smallSample": true },
+    "4-7":  { "record": "2-3",    "higherSeedWinPct": 0.4000, "games": 5,  "smallSample": true }
+  },
+
+  "F4": {
+    "_note": "Same-seed matchups are excluded (no meaningful win rate). Small samples throughout.",
+    "1-2":  { "record": "8-4",    "higherSeedWinPct": 0.6667, "games": 12 },
+    "1-3":  { "record": "3-4",    "higherSeedWinPct": 0.4286, "games": 7,  "smallSample": true },
+    "1-4":  { "record": "6-1",    "higherSeedWinPct": 0.8571, "games": 7,  "smallSample": true },
+    "2-3":  { "record": "3-3",    "higherSeedWinPct": 0.5000, "games": 6,  "smallSample": true }
+  },
+
+  "NCG": {
+    "_note": "National Championship Game. Same-seed matchups excluded.",
+    "1-2":  { "record": "6-2",    "higherSeedWinPct": 0.7500, "games": 8,  "smallSample": true },
+    "2-3":  { "record": "3-2",    "higherSeedWinPct": 0.6000, "games": 5,  "smallSample": true }
+  },
+
+  "seedAdvancement": {
+    "_source": "bracketodds.cs.illinois.edu/seedadv.html",
+    "_note": "Percentage of teams reaching each round by seed (1985-2025). Used as supplementary signal for fallback calculations.",
+    "1":  { "R32": 0.988, "S16": 0.850, "E8": 0.669, "F4": 0.413, "NCG": 0.513, "NC": 0.650 },
+    "2":  { "R32": 0.931, "S16": 0.644, "E8": 0.450, "F4": 0.200, "NCG": 0.163, "NC": 0.125 },
+    "3":  { "R32": 0.856, "S16": 0.525, "E8": 0.256, "F4": 0.106, "NCG": 0.138, "NC": 0.100 },
+    "4":  { "R32": 0.794, "S16": 0.481, "E8": 0.156, "F4": 0.094, "NCG": 0.050, "NC": 0.050 },
+    "5":  { "R32": 0.644, "S16": 0.344, "E8": 0.075, "F4": 0.056, "NCG": 0.050, "NC": 0.000 },
+    "6":  { "R32": 0.613, "S16": 0.294, "E8": 0.106, "F4": 0.019, "NCG": 0.025, "NC": 0.025 },
+    "7":  { "R32": 0.613, "S16": 0.181, "E8": 0.063, "F4": 0.019, "NCG": 0.013, "NC": 0.025 },
+    "8":  { "R32": 0.481, "S16": 0.100, "E8": 0.056, "F4": 0.038, "NCG": 0.050, "NC": 0.025 },
+    "9":  { "R32": 0.519, "S16": 0.050, "E8": 0.031, "F4": 0.013, "NCG": 0.000, "NC": 0.000 },
+    "10": { "R32": 0.388, "S16": 0.150, "E8": 0.056, "F4": 0.006, "NCG": 0.000, "NC": 0.000 },
+    "11": { "R32": 0.388, "S16": 0.169, "E8": 0.063, "F4": 0.038, "NCG": 0.000, "NC": 0.000 },
+    "12": { "R32": 0.356, "S16": 0.138, "E8": 0.013, "F4": 0.000, "NCG": 0.000, "NC": 0.000 },
+    "13": { "R32": 0.206, "S16": 0.038, "E8": 0.000, "F4": 0.000, "NCG": 0.000, "NC": 0.000 },
+    "14": { "R32": 0.144, "S16": 0.013, "E8": 0.000, "F4": 0.000, "NCG": 0.000, "NC": 0.000 },
+    "15": { "R32": 0.069, "S16": 0.025, "E8": 0.006, "F4": 0.000, "NCG": 0.000, "NC": 0.000 },
+    "16": { "R32": 0.013, "S16": 0.000, "E8": 0.000, "F4": 0.000, "NCG": 0.000, "NC": 0.000 }
+  }
+}

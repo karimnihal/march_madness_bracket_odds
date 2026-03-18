@@ -1,0 +1,658 @@
+[
+  {
+    "id": "duke",
+    "name": "Duke",
+    "shortName": "Duke",
+    "seed": 1,
+    "region": "East",
+    "champOdds": { "bet365": 340, "betmgm": 300, "draftkings": 350, "caesars": 295, "fanduel": 400, "rivers": 275 },
+    "champProb": 0.2376
+  },
+  {
+    "id": "siena",
+    "name": "Siena",
+    "shortName": "Siena",
+    "seed": 16,
+    "region": "East",
+    "champOdds": { "bet365": null, "betmgm": 200000, "draftkings": 200000, "caesars": 300000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00062
+  },
+  {
+    "id": "ohio-state",
+    "name": "Ohio State",
+    "shortName": "Ohio St.",
+    "seed": 8,
+    "region": "East",
+    "champOdds": { "bet365": 20000, "betmgm": 50000, "draftkings": 25000, "caesars": 30000, "fanduel": 15000, "rivers": 20000 },
+    "champProb": 0.00425
+  },
+  {
+    "id": "tcu",
+    "name": "TCU",
+    "shortName": "TCU",
+    "seed": 9,
+    "region": "East",
+    "champOdds": { "bet365": 40000, "betmgm": 100000, "draftkings": 50000, "caesars": 50000, "fanduel": 50000, "rivers": 35000 },
+    "champProb": 0.00197
+  },
+  {
+    "id": "st-johns",
+    "name": "St. John's",
+    "shortName": "St. John's",
+    "seed": 5,
+    "region": "East",
+    "champOdds": { "bet365": 5000, "betmgm": 6600, "draftkings": 7500, "caesars": 5000, "fanduel": 5000, "rivers": 5000 },
+    "champProb": 0.01652
+  },
+  {
+    "id": "northern-iowa",
+    "name": "Northern Iowa",
+    "shortName": "N. Iowa",
+    "seed": 12,
+    "region": "East",
+    "champOdds": { "bet365": 125000, "betmgm": 100000, "draftkings": 200000, "caesars": 100000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00085
+  },
+  {
+    "id": "kansas",
+    "name": "Kansas",
+    "shortName": "Kansas",
+    "seed": 4,
+    "region": "East",
+    "champOdds": { "bet365": 5000, "betmgm": 5000, "draftkings": 6000, "caesars": 4000, "fanduel": 5000, "rivers": 4000 },
+    "champProb": 0.01930
+  },
+  {
+    "id": "cal-baptist",
+    "name": "California Baptist",
+    "shortName": "Cal Baptist",
+    "seed": 13,
+    "region": "East",
+    "champOdds": { "bet365": null, "betmgm": 200000, "draftkings": 200000, "caesars": 150000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00068
+  },
+  {
+    "id": "louisville",
+    "name": "Louisville",
+    "shortName": "Louisville",
+    "seed": 6,
+    "region": "East",
+    "champOdds": { "bet365": 10000, "betmgm": 10000, "draftkings": 15000, "caesars": 15000, "fanduel": 10000, "rivers": 10000 },
+    "champProb": 0.00826
+  },
+  {
+    "id": "south-florida",
+    "name": "South Florida",
+    "shortName": "S. Florida",
+    "seed": 11,
+    "region": "East",
+    "champOdds": { "bet365": 60000, "betmgm": 75000, "draftkings": 100000, "caesars": 75000, "fanduel": null, "rivers": 75000 },
+    "champProb": 0.00133
+  },
+  {
+    "id": "michigan-state",
+    "name": "Michigan State",
+    "shortName": "Mich. St.",
+    "seed": 3,
+    "region": "East",
+    "champOdds": { "bet365": 4500, "betmgm": 5000, "draftkings": 5500, "caesars": 5000, "fanduel": 5000, "rivers": 5000 },
+    "champProb": 0.01832
+  },
+  {
+    "id": "north-dakota-state",
+    "name": "North Dakota State",
+    "shortName": "NDSU",
+    "seed": 14,
+    "region": "East",
+    "champOdds": { "bet365": null, "betmgm": 200000, "draftkings": 200000, "caesars": 200000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00068
+  },
+  {
+    "id": "ucla",
+    "name": "UCLA",
+    "shortName": "UCLA",
+    "seed": 7,
+    "region": "East",
+    "champOdds": { "bet365": 15000, "betmgm": 25000, "draftkings": 18000, "caesars": 17500, "fanduel": 15000, "rivers": 10000 },
+    "champProb": 0.00570
+  },
+  {
+    "id": "ucf",
+    "name": "UCF",
+    "shortName": "UCF",
+    "seed": 10,
+    "region": "East",
+    "champOdds": { "bet365": 40000, "betmgm": 50000, "draftkings": 80000, "caesars": 75000, "fanduel": 50000, "rivers": 25000 },
+    "champProb": 0.00187
+  },
+  {
+    "id": "uconn",
+    "name": "UConn",
+    "shortName": "UConn",
+    "seed": 2,
+    "region": "East",
+    "champOdds": { "bet365": 2000, "betmgm": 2200, "draftkings": 2200, "caesars": 2000, "fanduel": 2200, "rivers": 2200 },
+    "champProb": 0.04348
+  },
+  {
+    "id": "furman",
+    "name": "Furman",
+    "shortName": "Furman",
+    "seed": 15,
+    "region": "East",
+    "champOdds": { "bet365": 150000, "betmgm": 200000, "draftkings": 200000, "caesars": 150000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00072
+  },
+  {
+    "id": "florida",
+    "name": "Florida",
+    "shortName": "Florida",
+    "seed": 1,
+    "region": "South",
+    "champOdds": { "bet365": 700, "betmgm": 650, "draftkings": 750, "caesars": 650, "fanduel": 700, "rivers": 650 },
+    "champProb": 0.12485
+  },
+  {
+    "id": "ff-lehigh-pvamu",
+    "name": "Lehigh / PV A&M",
+    "shortName": "Lehigh/PVAMU",
+    "seed": 16,
+    "region": "South",
+    "champOdds": {},
+    "champProb": 0.0003,
+    "isFirstFourSlot": true,
+    "firstFourGame": "ff3"
+  },
+  {
+    "id": "iowa",
+    "name": "Iowa",
+    "shortName": "Iowa",
+    "seed": 9,
+    "region": "South",
+    "champOdds": { "bet365": 20000, "betmgm": 25000, "draftkings": 30000, "caesars": 30000, "fanduel": 25000, "rivers": 15000 },
+    "champProb": 0.00370
+  },
+  {
+    "id": "clemson",
+    "name": "Clemson",
+    "shortName": "Clemson",
+    "seed": 8,
+    "region": "South",
+    "champOdds": { "bet365": 35000, "betmgm": 25000, "draftkings": 50000, "caesars": 40000, "fanduel": 50000, "rivers": 20000 },
+    "champProb": 0.00234
+  },
+  {
+    "id": "vanderbilt",
+    "name": "Vanderbilt",
+    "shortName": "Vandy",
+    "seed": 5,
+    "region": "South",
+    "champOdds": { "bet365": 6000, "betmgm": 6600, "draftkings": 7500, "caesars": 7000, "fanduel": 6500, "rivers": 5000 },
+    "champProb": 0.01381
+  },
+  {
+    "id": "mcneese",
+    "name": "McNeese",
+    "shortName": "McNeese",
+    "seed": 12,
+    "region": "South",
+    "champOdds": { "bet365": 125000, "betmgm": 200000, "draftkings": 100000, "caesars": 150000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00080
+  },
+  {
+    "id": "nebraska",
+    "name": "Nebraska",
+    "shortName": "Nebraska",
+    "seed": 4,
+    "region": "South",
+    "champOdds": { "bet365": 10000, "betmgm": 10000, "draftkings": 11000, "caesars": 10000, "fanduel": 10000, "rivers": 10000 },
+    "champProb": 0.00908
+  },
+  {
+    "id": "troy",
+    "name": "Troy",
+    "shortName": "Troy",
+    "seed": 13,
+    "region": "South",
+    "champOdds": { "bet365": 100000, "betmgm": 200000, "draftkings": 200000, "caesars": 150000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00072
+  },
+  {
+    "id": "north-carolina",
+    "name": "North Carolina",
+    "shortName": "UNC",
+    "seed": 6,
+    "region": "South",
+    "champOdds": { "bet365": 12500, "betmgm": 20000, "draftkings": 25000, "caesars": 40000, "fanduel": 15000, "rivers": 20000 },
+    "champProb": 0.00470
+  },
+  {
+    "id": "vcu",
+    "name": "VCU",
+    "shortName": "VCU",
+    "seed": 11,
+    "region": "South",
+    "champOdds": { "bet365": 40000, "betmgm": 75000, "draftkings": 50000, "caesars": 75000, "fanduel": 50000, "rivers": 40000 },
+    "champProb": 0.00196
+  },
+  {
+    "id": "illinois",
+    "name": "Illinois",
+    "shortName": "Illinois",
+    "seed": 3,
+    "region": "South",
+    "champOdds": { "bet365": 2200, "betmgm": 2000, "draftkings": 2200, "caesars": 2200, "fanduel": 2500, "rivers": 1800 },
+    "champProb": 0.04028
+  },
+  {
+    "id": "penn",
+    "name": "Penn",
+    "shortName": "Penn",
+    "seed": 14,
+    "region": "South",
+    "champOdds": { "bet365": null, "betmgm": 200000, "draftkings": 150000, "caesars": 200000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00072
+  },
+  {
+    "id": "saint-marys",
+    "name": "Saint Mary's",
+    "shortName": "St. Mary's",
+    "seed": 7,
+    "region": "South",
+    "champOdds": { "bet365": 35000, "betmgm": 25000, "draftkings": 30000, "caesars": 40000, "fanduel": 50000, "rivers": 25000 },
+    "champProb": 0.00264
+  },
+  {
+    "id": "texas-am",
+    "name": "Texas A&M",
+    "shortName": "Texas A&M",
+    "seed": 10,
+    "region": "South",
+    "champOdds": { "bet365": 20000, "betmgm": 50000, "draftkings": 50000, "caesars": 60000, "fanduel": 25000, "rivers": 25000 },
+    "champProb": 0.00295
+  },
+  {
+    "id": "houston",
+    "name": "Houston",
+    "shortName": "Houston",
+    "seed": 2,
+    "region": "South",
+    "champOdds": { "bet365": 1000, "betmgm": 1000, "draftkings": 1300, "caesars": 1000, "fanduel": 1100, "rivers": 900 },
+    "champProb": 0.08693
+  },
+  {
+    "id": "idaho",
+    "name": "Idaho",
+    "shortName": "Idaho",
+    "seed": 15,
+    "region": "South",
+    "champOdds": { "bet365": 150000, "betmgm": 500000, "draftkings": 200000, "caesars": 200000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00054
+  },
+  {
+    "id": "arizona",
+    "name": "Arizona",
+    "shortName": "Arizona",
+    "seed": 1,
+    "region": "West",
+    "champOdds": { "bet365": 425, "betmgm": 400, "draftkings": 380, "caesars": 400, "fanduel": 400, "rivers": 400 },
+    "champProb": 0.19823
+  },
+  {
+    "id": "liu",
+    "name": "Long Island University",
+    "shortName": "LIU",
+    "seed": 16,
+    "region": "West",
+    "champOdds": { "bet365": null, "betmgm": 200000, "draftkings": 200000, "caesars": 300000, "fanduel": 100000, "rivers": 200000 },
+    "champProb": 0.00059
+  },
+  {
+    "id": "villanova",
+    "name": "Villanova",
+    "shortName": "Villanova",
+    "seed": 8,
+    "region": "West",
+    "champOdds": { "bet365": 35000, "betmgm": 50000, "draftkings": 50000, "caesars": 40000, "fanduel": 50000, "rivers": 20000 },
+    "champProb": 0.00228
+  },
+  {
+    "id": "utah-state",
+    "name": "Utah State",
+    "shortName": "Utah St.",
+    "seed": 9,
+    "region": "West",
+    "champOdds": { "bet365": 35000, "betmgm": 35000, "draftkings": 50000, "caesars": 50000, "fanduel": 50000, "rivers": 20000 },
+    "champProb": 0.00228
+  },
+  {
+    "id": "wisconsin",
+    "name": "Wisconsin",
+    "shortName": "Wisconsin",
+    "seed": 5,
+    "region": "West",
+    "champOdds": { "bet365": 6500, "betmgm": 6600, "draftkings": 10000, "caesars": 7000, "fanduel": 6500, "rivers": 6500 },
+    "champProb": 0.01233
+  },
+  {
+    "id": "high-point",
+    "name": "High Point",
+    "shortName": "High Point",
+    "seed": 12,
+    "region": "West",
+    "champOdds": { "bet365": 150000, "betmgm": 100000, "draftkings": 200000, "caesars": 150000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00079
+  },
+  {
+    "id": "arkansas",
+    "name": "Arkansas",
+    "shortName": "Arkansas",
+    "seed": 4,
+    "region": "West",
+    "champOdds": { "bet365": 5000, "betmgm": 5000, "draftkings": 6000, "caesars": 5000, "fanduel": 5000, "rivers": 4000 },
+    "champProb": 0.01885
+  },
+  {
+    "id": "hawaii",
+    "name": "Hawai'i",
+    "shortName": "Hawai'i",
+    "seed": 13,
+    "region": "West",
+    "champOdds": { "bet365": 150000, "betmgm": 200000, "draftkings": 200000, "caesars": 200000, "fanduel": 100000, "rivers": 200000 },
+    "champProb": 0.00059
+  },
+  {
+    "id": "byu",
+    "name": "BYU",
+    "shortName": "BYU",
+    "seed": 6,
+    "region": "West",
+    "champOdds": { "bet365": 20000, "betmgm": 15000, "draftkings": 35000, "caesars": 20000, "fanduel": 25000, "rivers": 15000 },
+    "champProb": 0.00449
+  },
+  {
+    "id": "nc-state",
+    "name": "NC State",
+    "shortName": "NC State",
+    "seed": 11,
+    "region": "West",
+    "champOdds": {},
+    "champProb": 0.000225
+  },
+  {
+    "id": "texas",
+    "name": "Texas",
+    "shortName": "Texas",
+    "seed": 11,
+    "region": "West",
+    "champOdds": {},
+    "champProb": 0.000225
+  },
+  {
+    "id": "ff-ncstate-texas",
+    "name": "NC State / Texas",
+    "shortName": "NCSt/Texas",
+    "seed": 11,
+    "region": "West",
+    "champOdds": {},
+    "champProb": 0.00045,
+    "isFirstFourSlot": true,
+    "firstFourGame": "ff2"
+  },
+  {
+    "id": "umbc",
+    "name": "UMBC",
+    "shortName": "UMBC",
+    "seed": 16,
+    "region": "Midwest",
+    "champOdds": {},
+    "champProb": 0.00019
+  },
+  {
+    "id": "howard",
+    "name": "Howard",
+    "shortName": "Howard",
+    "seed": 16,
+    "region": "Midwest",
+    "champOdds": {},
+    "champProb": 0.00019
+  },
+  {
+    "id": "gonzaga",
+    "name": "Gonzaga",
+    "shortName": "Gonzaga",
+    "seed": 3,
+    "region": "West",
+    "champOdds": { "bet365": 5500, "betmgm": 5500, "draftkings": 6000, "caesars": 6000, "fanduel": 5000, "rivers": 4000 },
+    "champProb": 0.01705
+  },
+  {
+    "id": "kennesaw-state",
+    "name": "Kennesaw State",
+    "shortName": "Kennesaw St.",
+    "seed": 14,
+    "region": "West",
+    "champOdds": { "bet365": 125000, "betmgm": 500000, "draftkings": 200000, "caesars": 200000, "fanduel": 100000, "rivers": 50000 },
+    "champProb": 0.00076
+  },
+  {
+    "id": "miami-fl",
+    "name": "Miami (FL)",
+    "shortName": "Miami FL",
+    "seed": 7,
+    "region": "West",
+    "champOdds": { "bet365": 20000, "betmgm": 25000, "draftkings": 50000, "caesars": 30000, "fanduel": 15000, "rivers": 20000 },
+    "champProb": 0.00387
+  },
+  {
+    "id": "missouri",
+    "name": "Missouri",
+    "shortName": "Missouri",
+    "seed": 10,
+    "region": "West",
+    "champOdds": { "bet365": 25000, "betmgm": 50000, "draftkings": 50000, "caesars": 40000, "fanduel": 25000, "rivers": 25000 },
+    "champProb": 0.00295
+  },
+  {
+    "id": "purdue",
+    "name": "Purdue",
+    "shortName": "Purdue",
+    "seed": 2,
+    "region": "West",
+    "champOdds": { "bet365": 3500, "betmgm": 2500, "draftkings": 2500, "caesars": 2500, "fanduel": 3500, "rivers": 2200 },
+    "champProb": 0.03306
+  },
+  {
+    "id": "queens-nc",
+    "name": "Queens University",
+    "shortName": "Queens NC",
+    "seed": 15,
+    "region": "West",
+    "champOdds": { "bet365": null, "betmgm": 200000, "draftkings": 200000, "caesars": 200000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00063
+  },
+  {
+    "id": "michigan",
+    "name": "Michigan",
+    "shortName": "Michigan",
+    "seed": 1,
+    "region": "Midwest",
+    "champOdds": { "bet365": 325, "betmgm": 350, "draftkings": 370, "caesars": 360, "fanduel": 300, "rivers": 350 },
+    "champProb": 0.22615
+  },
+  {
+    "id": "ff-howard-umbc",
+    "name": "Howard / UMBC",
+    "shortName": "Howard/UMBC",
+    "seed": 16,
+    "region": "Midwest",
+    "champOdds": {},
+    "champProb": 0.00038,
+    "isFirstFourSlot": true,
+    "firstFourGame": "ff1"
+  },
+  {
+    "id": "prairie-view-am",
+    "name": "Prairie View A&M",
+    "shortName": "PV A&M",
+    "seed": 16,
+    "region": "South",
+    "champOdds": {},
+    "champProb": 0.00015
+  },
+  {
+    "id": "lehigh",
+    "name": "Lehigh",
+    "shortName": "Lehigh",
+    "seed": 16,
+    "region": "South",
+    "champOdds": {},
+    "champProb": 0.00015
+  },
+  {
+    "id": "georgia",
+    "name": "Georgia",
+    "shortName": "Georgia",
+    "seed": 8,
+    "region": "Midwest",
+    "champOdds": { "bet365": 40000, "betmgm": 75000, "draftkings": 50000, "caesars": 40000, "fanduel": 50000, "rivers": 30000 },
+    "champProb": 0.00203
+  },
+  {
+    "id": "saint-louis",
+    "name": "Saint Louis",
+    "shortName": "Saint Louis",
+    "seed": 9,
+    "region": "Midwest",
+    "champOdds": { "bet365": 35000, "betmgm": 35000, "draftkings": 80000, "caesars": 60000, "fanduel": 15000, "rivers": 40000 },
+    "champProb": 0.00268
+  },
+  {
+    "id": "texas-tech",
+    "name": "Texas Tech",
+    "shortName": "Texas Tech",
+    "seed": 5,
+    "region": "Midwest",
+    "champOdds": { "bet365": 10000, "betmgm": 12500, "draftkings": 13000, "caesars": 15000, "fanduel": 10000, "rivers": 10000 },
+    "champProb": 0.00840
+  },
+  {
+    "id": "akron",
+    "name": "Akron",
+    "shortName": "Akron",
+    "seed": 12,
+    "region": "Midwest",
+    "champOdds": { "bet365": 50000, "betmgm": 100000, "draftkings": 100000, "caesars": 100000, "fanduel": 50000, "rivers": 50000 },
+    "champProb": 0.00157
+  },
+  {
+    "id": "alabama",
+    "name": "Alabama",
+    "shortName": "Alabama",
+    "seed": 4,
+    "region": "Midwest",
+    "champOdds": { "bet365": 10000, "betmgm": 10000, "draftkings": 18000, "caesars": 12500, "fanduel": 10000, "rivers": 10000 },
+    "champProb": 0.00849
+  },
+  {
+    "id": "hofstra",
+    "name": "Hofstra",
+    "shortName": "Hofstra",
+    "seed": 13,
+    "region": "Midwest",
+    "champOdds": { "bet365": 150000, "betmgm": 100000, "draftkings": 200000, "caesars": 200000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00072
+  },
+  {
+    "id": "tennessee",
+    "name": "Tennessee",
+    "shortName": "Tennessee",
+    "seed": 6,
+    "region": "Midwest",
+    "champOdds": { "bet365": 10000, "betmgm": 10000, "draftkings": 13000, "caesars": 12500, "fanduel": 10000, "rivers": 6600 },
+    "champProb": 0.00936
+  },
+  {
+    "id": "ff-smu-miamioh",
+    "name": "SMU / Miami (OH)",
+    "shortName": "SMU/MiamiOH",
+    "seed": 11,
+    "region": "Midwest",
+    "champOdds": {},
+    "champProb": 0.00028,
+    "isFirstFourSlot": true,
+    "firstFourGame": "ff4"
+  },
+  {
+    "id": "miami-oh",
+    "name": "Miami (OH)",
+    "shortName": "Miami OH",
+    "seed": 11,
+    "region": "Midwest",
+    "champOdds": {},
+    "champProb": 0.00014
+  },
+  {
+    "id": "smu",
+    "name": "SMU",
+    "shortName": "SMU",
+    "seed": 11,
+    "region": "Midwest",
+    "champOdds": {},
+    "champProb": 0.00014
+  },
+  {
+    "id": "virginia",
+    "name": "Virginia",
+    "shortName": "Virginia",
+    "seed": 3,
+    "region": "Midwest",
+    "champOdds": { "bet365": 6500, "betmgm": 8000, "draftkings": 7500, "caesars": 7000, "fanduel": 6500, "rivers": 5000 },
+    "champProb": 0.01285
+  },
+  {
+    "id": "wright-state",
+    "name": "Wright State",
+    "shortName": "Wright St.",
+    "seed": 14,
+    "region": "Midwest",
+    "champOdds": { "bet365": 150000, "betmgm": 200000, "draftkings": 200000, "caesars": 200000, "fanduel": 100000, "rivers": 100000 },
+    "champProb": 0.00065
+  },
+  {
+    "id": "kentucky",
+    "name": "Kentucky",
+    "shortName": "Kentucky",
+    "seed": 7,
+    "region": "Midwest",
+    "champOdds": { "bet365": 10000, "betmgm": 12500, "draftkings": 25000, "caesars": 20000, "fanduel": 10000, "rivers": 10000 },
+    "champProb": 0.00788
+  },
+  {
+    "id": "santa-clara",
+    "name": "Santa Clara",
+    "shortName": "Santa Clara",
+    "seed": 10,
+    "region": "Midwest",
+    "champOdds": { "bet365": 40000, "betmgm": 75000, "draftkings": 50000, "caesars": 75000, "fanduel": 50000, "rivers": 50000 },
+    "champProb": 0.00186
+  },
+  {
+    "id": "iowa-state",
+    "name": "Iowa State",
+    "shortName": "Iowa State",
+    "seed": 2,
+    "region": "Midwest",
+    "champOdds": { "bet365": 2200, "betmgm": 1600, "draftkings": 1800, "caesars": 1700, "fanduel": 2500, "rivers": 1800 },
+    "champProb": 0.04630
+  },
+  {
+    "id": "tennessee-state",
+    "name": "Tennessee State",
+    "shortName": "Tenn. State",
+    "seed": 15,
+    "region": "Midwest",
+    "champOdds": { "bet365": null, "betmgm": 200000, "draftkings": 200000, "caesars": 200000, "fanduel": 100000, "rivers": 200000 },
+    "champProb": 0.00059
+  }
+]

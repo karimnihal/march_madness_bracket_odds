@@ -1,0 +1,61 @@
+{
+  "sources": [
+    {
+      "id": "vegasinsider-champ-odds",
+      "label": "Tournament winner odds",
+      "description": "National Championship futures odds averaged across six sportsbooks (Bet365, BetMGM, DraftKings, Caesars, FanDuel, Rivers Casino)",
+      "provider": "VegasInsider",
+      "url": "https://www.vegasinsider.com/college-basketball/ncaa-tourney-picks/",
+      "retrievedDate": "2026-03-17"
+    },
+    {
+      "id": "espn-draftkings-r64",
+      "label": "Round of 64 moneylines, spreads & totals",
+      "description": "First round and First Four game odds via DraftKings Sportsbook as published by ESPN Betting",
+      "provider": "ESPN / DraftKings Sportsbook",
+      "url": "https://www.espn.com/espn/betting/story/_/id/48217692/espn-2026-tournament-men-bracket-game-odds",
+      "retrievedDate": "2026-03-17"
+    },
+    {
+      "id": "espn-bpi",
+      "label": "BPI win projections",
+      "description": "ESPN Basketball Power Index win percentages and projected margins for first round matchups",
+      "provider": "ESPN BPI",
+      "url": "https://www.espn.com/espn/betting/story/_/id/48217692/espn-2026-tournament-men-bracket-game-odds",
+      "retrievedDate": "2026-03-17"
+    },
+    {
+      "id": "ncaa-bracket",
+      "label": "Official bracket & regional seeding",
+      "description": "Official 2026 NCAA Division I Men's Basketball Championship bracket including regional assignments, seeds, and First Four matchups",
+      "provider": "NCAA",
+      "url": "https://www.ncaa.com/march-madness",
+      "retrievedDate": "2026-03-17"
+    },
+    {
+      "id": "illinois-seed-records",
+      "label": "Historical seed vs. seed win rates",
+      "description": "Head-to-head win records for every seed matchup by round across 40 NCAA Tournaments (1985–2025, no 2020 tournament)",
+      "provider": "BracketOdds — University of Illinois",
+      "url": "https://bracketodds.cs.illinois.edu/seed_records.html",
+      "retrievedDate": "2026-03-17",
+      "citation": "Jacobson, S.H., et al. BracketOdds. University of Illinois, 2025."
+    },
+    {
+      "id": "illinois-seed-advancement",
+      "label": "Historical seed advancement rates",
+      "description": "Percentage of teams reaching each round by seed across 40 NCAA Tournaments (1985–2025), including expected wins and standard deviation per seed",
+      "provider": "BracketOdds — University of Illinois",
+      "url": "https://bracketodds.cs.illinois.edu/seedadv.html",
+      "retrievedDate": "2026-03-17",
+      "citation": "Jacobson, S.H., et al. BracketOdds. University of Illinois, 2025."
+    }
+  ],
+  "notes": {
+    "oddsMethod": "Championship win probabilities are derived by converting American moneylines to implied probabilities and averaging across all available books. Bookmaker vig is removed by normalizing each pair of implied probabilities to sum to 1 (de-vigging).",
+    "r64Method": "Round of 64 and First Four win probabilities use DraftKings moneylines, de-vigged.",
+    "downstreamMethod": "Round of 32 through Championship win probabilities use historical seed-vs-seed records from the University of Illinois BracketOdds project. For matchups with no historical precedent, a fallback ratio of seed championship advancement rates is used.",
+    "dataAsOf": "2026-03-17",
+    "tournamentYear": 2026
+  }
+}

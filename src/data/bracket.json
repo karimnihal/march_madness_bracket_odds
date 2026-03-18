@@ -1,0 +1,368 @@
+{
+  "regions": {
+    "East": {
+      "name": "East",
+      "finalFourSide": "left",
+      "semifinalOrder": 1,
+      "matchups": [
+        {
+          "id": "East-R64-1",
+          "round": 64,
+          "topTeam": "duke",
+          "bottomTeam": "siena",
+          "moneylines": { "duke": -20000, "siena": 3500 },
+          "spread": { "favorite": "duke", "line": -27.5 },
+          "total": 135.5,
+          "bpi": { "favorite": "duke", "winPct": 99.0 }
+        },
+        {
+          "id": "East-R64-2",
+          "round": 64,
+          "topTeam": "ohio-state",
+          "bottomTeam": "tcu",
+          "moneylines": { "ohio-state": -142, "tcu": 120 },
+          "spread": { "favorite": "ohio-state", "line": -2.5 },
+          "total": 146.5,
+          "bpi": { "favorite": "ohio-state", "winPct": 65.4 }
+        },
+        {
+          "id": "East-R64-3",
+          "round": 64,
+          "topTeam": "st-johns",
+          "bottomTeam": "northern-iowa",
+          "moneylines": { "st-johns": -600, "northern-iowa": 440 },
+          "spread": { "favorite": "st-johns", "line": -10.5 },
+          "total": 131.5,
+          "bpi": { "favorite": "st-johns", "winPct": 85.0 }
+        },
+        {
+          "id": "East-R64-4",
+          "round": 64,
+          "topTeam": "kansas",
+          "bottomTeam": "cal-baptist",
+          "moneylines": { "kansas": -1200, "cal-baptist": 750 },
+          "spread": { "favorite": "kansas", "line": -14.5 },
+          "total": 138.5,
+          "bpi": { "favorite": "kansas", "winPct": 92.6 }
+        },
+        {
+          "id": "East-R64-5",
+          "round": 64,
+          "topTeam": "louisville",
+          "bottomTeam": "south-florida",
+          "moneylines": { "louisville": -225, "south-florida": 185 },
+          "spread": { "favorite": "louisville", "line": -5.5 },
+          "total": 165.5,
+          "bpi": { "favorite": "louisville", "winPct": 81.0 }
+        },
+        {
+          "id": "East-R64-6",
+          "round": 64,
+          "topTeam": "michigan-state",
+          "bottomTeam": "north-dakota-state",
+          "moneylines": { "michigan-state": -1800, "north-dakota-state": 1000 },
+          "spread": { "favorite": "michigan-state", "line": -16.5 },
+          "total": 143.5,
+          "bpi": { "favorite": "michigan-state", "winPct": 94.2 }
+        },
+        {
+          "id": "East-R64-7",
+          "round": 64,
+          "topTeam": "ucla",
+          "bottomTeam": "ucf",
+          "moneylines": { "ucla": -250, "ucf": 205 },
+          "spread": { "favorite": "ucla", "line": -5.5 },
+          "total": 152.5,
+          "bpi": { "favorite": "ucla", "winPct": 72.2 }
+        },
+        {
+          "id": "East-R64-8",
+          "round": 64,
+          "topTeam": "uconn",
+          "bottomTeam": "furman",
+          "moneylines": { "uconn": -4500, "furman": 1700 },
+          "spread": { "favorite": "uconn", "line": -20.5 },
+          "total": 137.5,
+          "bpi": { "favorite": "uconn", "winPct": 96.4 }
+        }
+      ]
+    },
+    "South": {
+      "name": "South",
+      "finalFourSide": "left",
+      "semifinalOrder": 2,
+      "matchups": [
+        {
+          "id": "South-R64-1",
+          "round": 64,
+          "topTeam": "florida",
+          "bottomTeam": "ff-lehigh-pvamu",
+          "moneylines": null,
+          "spread": null,
+          "total": null,
+          "bpi": null,
+          "note": "TBD — awaits First Four winner (ff3)"
+        },
+        {
+          "id": "South-R64-2",
+          "round": 64,
+          "topTeam": "clemson",
+          "bottomTeam": "iowa",
+          "moneylines": { "iowa": -135, "clemson": 114 },
+          "spread": { "favorite": "iowa", "line": -2.5 },
+          "total": 129.5,
+          "bpi": { "favorite": "clemson", "winPct": 50.6 }
+        },
+        {
+          "id": "South-R64-3",
+          "round": 64,
+          "topTeam": "vanderbilt",
+          "bottomTeam": "mcneese",
+          "moneylines": { "vanderbilt": -625, "mcneese": 455 },
+          "spread": { "favorite": "vanderbilt", "line": -11.5 },
+          "total": 150.5,
+          "bpi": { "favorite": "vanderbilt", "winPct": 81.2 }
+        },
+        {
+          "id": "South-R64-4",
+          "round": 64,
+          "topTeam": "nebraska",
+          "bottomTeam": "troy",
+          "moneylines": { "nebraska": -1000, "troy": 650 },
+          "spread": { "favorite": "nebraska", "line": -13.5 },
+          "total": 137.5,
+          "bpi": { "favorite": "nebraska", "winPct": 92.7 }
+        },
+        {
+          "id": "South-R64-5",
+          "round": 64,
+          "topTeam": "north-carolina",
+          "bottomTeam": "vcu",
+          "moneylines": { "north-carolina": -135, "vcu": 114 },
+          "spread": { "favorite": "north-carolina", "line": -2.5 },
+          "total": 153.5,
+          "bpi": { "favorite": "north-carolina", "winPct": 61.5 }
+        },
+        {
+          "id": "South-R64-6",
+          "round": 64,
+          "topTeam": "illinois",
+          "bottomTeam": "penn",
+          "moneylines": { "illinois": -6500, "penn": 2000 },
+          "spread": { "favorite": "illinois", "line": -24.5 },
+          "total": 150.5,
+          "bpi": { "favorite": "illinois", "winPct": 97.3 }
+        },
+        {
+          "id": "South-R64-7",
+          "round": 64,
+          "topTeam": "saint-marys",
+          "bottomTeam": "texas-am",
+          "moneylines": { "saint-marys": -162, "texas-am": 136 },
+          "spread": { "favorite": "saint-marys", "line": -2.5 },
+          "total": 146.5,
+          "bpi": { "favorite": "saint-marys", "winPct": 53.2 }
+        },
+        {
+          "id": "South-R64-8",
+          "round": 64,
+          "topTeam": "houston",
+          "bottomTeam": "idaho",
+          "moneylines": { "houston": -8000, "idaho": 2200 },
+          "spread": { "favorite": "houston", "line": -23.5 },
+          "total": 136.5,
+          "bpi": { "favorite": "houston", "winPct": 98.2 }
+        }
+      ]
+    },
+    "West": {
+      "name": "West",
+      "finalFourSide": "right",
+      "semifinalOrder": 1,
+      "matchups": [
+        {
+          "id": "West-R64-1",
+          "round": 64,
+          "topTeam": "arizona",
+          "bottomTeam": "liu",
+          "moneylines": { "arizona": -100000, "liu": 5000 },
+          "spread": { "favorite": "arizona", "line": -30.5 },
+          "total": 150.5,
+          "bpi": { "favorite": "arizona", "winPct": 99.0 }
+        },
+        {
+          "id": "West-R64-2",
+          "round": 64,
+          "topTeam": "utah-state",
+          "bottomTeam": "villanova",
+          "moneylines": { "utah-state": -135, "villanova": 114 },
+          "spread": { "favorite": "utah-state", "line": -1.5 },
+          "total": 147.5,
+          "bpi": { "favorite": "utah-state", "winPct": 51.6 }
+        },
+        {
+          "id": "West-R64-3",
+          "round": 64,
+          "topTeam": "wisconsin",
+          "bottomTeam": "high-point",
+          "moneylines": { "wisconsin": -485, "high-point": 370 },
+          "spread": { "favorite": "wisconsin", "line": -9.5 },
+          "total": 164.5,
+          "bpi": { "favorite": "wisconsin", "winPct": 76.3 }
+        },
+        {
+          "id": "West-R64-4",
+          "round": 64,
+          "topTeam": "arkansas",
+          "bottomTeam": "hawaii",
+          "moneylines": { "arkansas": -1350, "hawaii": 800 },
+          "spread": { "favorite": "arkansas", "line": -15.5 },
+          "total": 159.5,
+          "bpi": { "favorite": "arkansas", "winPct": 91.6 }
+        },
+        {
+          "id": "West-R64-5",
+          "round": 64,
+          "topTeam": "byu",
+          "bottomTeam": "ff-ncstate-texas",
+          "moneylines": null,
+          "spread": null,
+          "total": null,
+          "bpi": null,
+          "note": "TBD — awaits First Four winner (ff2)"
+        },
+        {
+          "id": "West-R64-6",
+          "round": 64,
+          "topTeam": "gonzaga",
+          "bottomTeam": "kennesaw-state",
+          "moneylines": { "gonzaga": -3200, "kennesaw-state": 1400 },
+          "spread": { "favorite": "gonzaga", "line": -20.5 },
+          "total": 154.5,
+          "bpi": { "favorite": "gonzaga", "winPct": 95.6 }
+        },
+        {
+          "id": "West-R64-7",
+          "round": 64,
+          "topTeam": "miami-fl",
+          "bottomTeam": "missouri",
+          "moneylines": { "miami-fl": -130, "missouri": 110 },
+          "spread": { "favorite": "miami-fl", "line": -1.5 },
+          "total": 147.5,
+          "bpi": { "favorite": "miami-fl", "winPct": 55.1 }
+        },
+        {
+          "id": "West-R64-8",
+          "round": 64,
+          "topTeam": "purdue",
+          "bottomTeam": "queens-nc",
+          "moneylines": { "purdue": -8000, "queens-nc": 2200 },
+          "spread": { "favorite": "purdue", "line": -25.5 },
+          "total": 163.5,
+          "bpi": { "favorite": "purdue", "winPct": 97.8 }
+        }
+      ]
+    },
+    "Midwest": {
+      "name": "Midwest",
+      "finalFourSide": "right",
+      "semifinalOrder": 2,
+      "matchups": [
+        {
+          "id": "Midwest-R64-1",
+          "round": 64,
+          "topTeam": "michigan",
+          "bottomTeam": "ff-howard-umbc",
+          "moneylines": null,
+          "spread": null,
+          "total": null,
+          "bpi": null,
+          "note": "TBD — awaits First Four winner (ff1)"
+        },
+        {
+          "id": "Midwest-R64-2",
+          "round": 64,
+          "topTeam": "georgia",
+          "bottomTeam": "saint-louis",
+          "moneylines": { "georgia": -162, "saint-louis": 136 },
+          "spread": { "favorite": "georgia", "line": -2.5 },
+          "total": 169.5,
+          "bpi": { "favorite": "georgia", "winPct": 50.9 }
+        },
+        {
+          "id": "Midwest-R64-3",
+          "round": 64,
+          "topTeam": "texas-tech",
+          "bottomTeam": "akron",
+          "moneylines": { "texas-tech": -325, "akron": 260 },
+          "spread": { "favorite": "texas-tech", "line": -7.5 },
+          "total": 156.5,
+          "bpi": { "favorite": "texas-tech", "winPct": 81.9 }
+        },
+        {
+          "id": "Midwest-R64-4",
+          "round": 64,
+          "topTeam": "alabama",
+          "bottomTeam": "hofstra",
+          "moneylines": { "alabama": -850, "hofstra": 575 },
+          "spread": { "favorite": "alabama", "line": -11.5 },
+          "total": 159.5,
+          "bpi": { "favorite": "alabama", "winPct": 90.1 }
+        },
+        {
+          "id": "Midwest-R64-5",
+          "round": 64,
+          "topTeam": "tennessee",
+          "bottomTeam": "ff-smu-miamioh",
+          "moneylines": null,
+          "spread": null,
+          "total": null,
+          "bpi": null,
+          "note": "TBD — awaits First Four winner (ff4)"
+        },
+        {
+          "id": "Midwest-R64-6",
+          "round": 64,
+          "topTeam": "virginia",
+          "bottomTeam": "wright-state",
+          "moneylines": { "virginia": -2800, "wright-state": 1300 },
+          "spread": { "favorite": "virginia", "line": -18.5 },
+          "total": 144.5,
+          "bpi": { "favorite": "virginia", "winPct": 93.0 }
+        },
+        {
+          "id": "Midwest-R64-7",
+          "round": 64,
+          "topTeam": "kentucky",
+          "bottomTeam": "santa-clara",
+          "moneylines": { "kentucky": -166, "santa-clara": 140 },
+          "spread": { "favorite": "kentucky", "line": -3.5 },
+          "total": 160.5,
+          "bpi": { "favorite": "kentucky", "winPct": 72.2 }
+        },
+        {
+          "id": "Midwest-R64-8",
+          "round": 64,
+          "topTeam": "iowa-state",
+          "bottomTeam": "tennessee-state",
+          "moneylines": { "iowa-state": -8000, "tennessee-state": 2200 },
+          "spread": { "favorite": "iowa-state", "line": -24.5 },
+          "total": 149.5,
+          "bpi": { "favorite": "iowa-state", "winPct": 98.4 }
+        }
+      ]
+    }
+  },
+  "bracketStructure": {
+    "note": "Each region's 8 R64 matchups are indexed 1-8 top to bottom. Winners of 1v2 play each other in R32, winners of 3v4 play, winners of 5v6 play, winners of 7v8 play. R16 pairs top and bottom halves. Final Four: East vs South (left side), West vs Midwest (right side). Championship is Final Four winners.",
+    "rounds": [64, 32, 16, 8, 4, 2],
+    "roundNames": {
+      "64": "Round of 64",
+      "32": "Round of 32",
+      "16": "Sweet 16",
+      "8": "Elite Eight",
+      "4": "Final Four",
+      "2": "Championship"
+    }
+  }
+}
