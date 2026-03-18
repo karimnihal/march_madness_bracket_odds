@@ -10,6 +10,13 @@
   --gray-border: #333333;
   --gray-mid: #555555;
   --font-display: 'Barlow Condensed', sans-serif;
+  --desktop-game-width: 120px;
+  --desktop-round-gap: 0.32rem;
+  --desktop-final-gap: 1rem;
+  --desktop-champ-width: 168px;
+  --desktop-center-width: calc((var(--desktop-game-width) * 2) + (var(--desktop-final-gap) * 2) + var(--desktop-champ-width));
+  --desktop-region-width: calc((var(--desktop-game-width) * 4) + (var(--desktop-round-gap) * 3));
+  --desktop-bracket-width: calc((var(--desktop-region-width) * 2) + var(--desktop-center-width));
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,22 +29,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Desktop-only gate */
-.desktop-only-gate {
-  display: none;
-  text-align: center;
-  padding: 4rem 2rem;
-}
-.desktop-only-gate h1 {
-  font-weight: 900;
-  font-style: italic;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-.desktop-only-gate p {
-  color: var(--gray-lowlight);
-  font-size: 1.1rem;
-}
 
 @media (max-width: 1400px) {
   .game { min-width: 140px; }
@@ -73,14 +64,9 @@ body {
   .odds-total { padding: 0.1rem 0 0.5rem; }
 }
 
-@media (min-width: 768px) and (max-width: 1099px) {
-  .desktop-only-gate { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
-  .app { display: none !important; }
-}
 
 /* App */
 .app {
-  max-width: 1600px;
   margin: 0 auto;
   padding: 0 1rem 2rem;
 }
@@ -247,6 +233,7 @@ body {
   cursor: pointer;
   transition: background 0.1s;
   min-height: 1.6rem;
+  min-width: 0;
 }
 
 .game-slot:hover {
@@ -294,6 +281,10 @@ body {
   font-style: italic;
   font-size: 0.8rem;
   flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
@@ -302,6 +293,10 @@ body {
   font-weight: 600;
   font-size: 0.75rem;
   color: var(--gray-mid);
+  flex: 0 0 auto;
+  max-width: 3.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -383,8 +378,9 @@ body {
   letter-spacing: 0.06em;
 }
 
-/* Hide header buttons in capture mode */
-body.capture-mode .header-actions {
+/* Hide header buttons in capture renders */
+body.capture-mode .header-actions,
+.capture-fixed .header-actions {
   display: none;
 }
 
@@ -394,46 +390,52 @@ body.capture-mode .header-actions {
 }
 
 /* During image capture, use inline header (between brackets) instead of sticky header */
-body.capture-mode .bracket-header--sticky {
+body.capture-mode .bracket-header--sticky,
+.capture-fixed .bracket-header--sticky {
   display: none;
 }
 
-body.capture-mode .bracket-header--inline {
+body.capture-mode .bracket-header--inline,
+.capture-fixed .bracket-header--inline {
   display: flex;
   margin-bottom: 0.35rem;
 }
 
-body.capture-mode .app-title {
+body.capture-mode .app-title,
+.capture-fixed .app-title {
   white-space: nowrap;
 }
 
-body.capture-mode .odds-total {
+body.capture-mode .odds-total,
+.capture-fixed .odds-total {
   white-space: nowrap;
 }
 
 /* Hide info icon in downloaded image */
-body.capture-mode .odds-total-info {
+body.capture-mode .odds-total-info,
+.capture-fixed .odds-total-info {
   display: none;
 }
 
-/* Shift title and Exact Bracket Odds up so champ box fits in download image */
-body.capture-mode .bracket {
+/* Capture uses deterministic fixed geometry */
+body.capture-mode .bracket,
+.capture-fixed.bracket {
   padding: 0.5rem 0;
 }
 
-body.capture-mode .bracket-center {
-  padding: 0 0.25rem;
+.app .bracket-zoom-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
 }
 
-body.capture-mode .final-four {
-  padding: 1rem 0;
-}
-
-.bracket-sides {
+.app .bracket-sides {
   display: flex;
   align-items: center;
   gap: 0;
-  overflow-x: auto;
+  width: var(--desktop-bracket-width);
+  min-width: var(--desktop-bracket-width);
+  margin: 0 auto;
 }
 
 .game-exact-path-odds {
@@ -443,6 +445,8 @@ body.capture-mode .final-four {
   gap: 0.4rem;
   padding: 0.2rem 0.5rem 0.25rem;
   border-bottom: 1px solid var(--gray-border);
+  min-width: 0;
+  overflow: hidden;
 }
 
 .game-derived-odds {
@@ -451,6 +455,8 @@ body.capture-mode .final-four {
   gap: 0.15rem;
   padding: 0.2rem 0.5rem 0.3rem;
   border-top: 1px solid var(--gray-border);
+  min-width: 0;
+  overflow: hidden;
 }
 
 .game-derived-odds-row {
@@ -458,6 +464,8 @@ body.capture-mode .final-four {
   align-items: baseline;
   justify-content: space-between;
   gap: 0.4rem;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .game-matchup-prob-label {
@@ -466,6 +474,10 @@ body.capture-mode .final-four {
   letter-spacing: 0.12em;
   color: var(--gray-mid);
   line-height: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -474,8 +486,12 @@ body.capture-mode .final-four {
   font-size: 0.78rem;
   color: var(--blue-highlight);
   line-height: 1;
+  flex: 0 1 5.8rem;
   white-space: nowrap;
-  min-width: 3.8rem;
+  min-width: 0;
+  max-width: 5.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-align: right;
 }
 
@@ -484,32 +500,27 @@ body.capture-mode .final-four {
 }
 
 .bracket-side {
-  flex: 1;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.75rem;
 }
 
 .bracket-center {
+  position: relative;
+  align-self: stretch;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-width: 200px;
-  padding: 0 0.5rem;
+  padding: 0 0.35rem;
 }
 
-/* First Four overlayed between East/West, above Final Four */
-.first-four--overlay {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 8.5rem;
-  z-index: 20;
-}
-
-body.capture-mode .first-four--overlay {
-  top: 1.5rem;
+.bracket-center .first-four {
+  position: relative;
+  z-index: 1;
+  padding: 0.6rem 0 0.45rem;
 }
 
 .bracket-watermark {
@@ -520,7 +531,8 @@ body.capture-mode .first-four--overlay {
   font-family: var(--font-display);
 }
 
-body.capture-mode .bracket-watermark {
+body.capture-mode .bracket-watermark,
+.capture-fixed .bracket-watermark {
   display: flex;
   position: absolute;
   left: 50%;
@@ -568,7 +580,7 @@ body.capture-mode .bracket-watermark {
 
 .region-rounds {
   display: flex;
-  gap: 0.5rem;
+  gap: var(--desktop-round-gap);
 }
 
 .region--left .region-rounds {
@@ -599,8 +611,37 @@ body.capture-mode .bracket-watermark {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  padding: 2rem 0;
+  gap: var(--desktop-final-gap);
+  padding: 1.5rem 0;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* Keep desktop geometry fixed on non-mobile app path */
+.app .bracket .game {
+  width: var(--desktop-game-width);
+  min-width: var(--desktop-game-width);
+  max-width: var(--desktop-game-width);
+  font-size: 0.78rem;
+}
+
+.app .bracket .ff-game {
+  width: var(--desktop-game-width);
+  min-width: var(--desktop-game-width);
+  max-width: var(--desktop-game-width);
+  font-size: 0.78rem;
+}
+
+.app .bracket .first-four-games {
+  grid-template-columns: repeat(2, minmax(0, var(--desktop-game-width)));
+  gap: 0.65rem 0.9rem;
+}
+
+.app .bracket .bracket-center {
+  width: var(--desktop-center-width);
+  min-width: var(--desktop-center-width);
+  max-width: var(--desktop-center-width);
+  padding: 0 0.35rem;
 }
 
 .final-four-game {
@@ -609,10 +650,11 @@ body.capture-mode .bracket-watermark {
   z-index: 2;
 }
 
-.championship-center {
+.app .championship-center {
   flex: 0 0 auto;
-  min-width: 220px;
-  max-width: 260px;
+  width: var(--desktop-champ-width);
+  min-width: var(--desktop-champ-width);
+  max-width: var(--desktop-champ-width);
   background: var(--gray-warm);
   border: 2px solid var(--blue-highlight);
   border-radius: 4px;
@@ -708,7 +750,11 @@ body.capture-mode .bracket-watermark {
   font-style: normal;
 }
 
-/* Download button */
+/* Export button & dropdown */
+.export-wrapper {
+  position: relative;
+}
+
 .download-btn {
   display: block;
   padding: 0.75rem 1.5rem;
@@ -726,6 +772,43 @@ body.capture-mode .bracket-watermark {
 
 .download-btn:hover {
   opacity: 0.85;
+}
+
+.export-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.25rem;
+  background: var(--gray-warm);
+  border: 1px solid var(--gray-border);
+  border-radius: 3px;
+  z-index: 150;
+  min-width: 80px;
+  overflow: hidden;
+}
+
+.export-option {
+  display: block;
+  width: 100%;
+  padding: 0.45rem 0.75rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  background: none;
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s;
+}
+
+.export-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.export-option + .export-option {
+  border-top: 1px solid var(--gray-border);
 }
 
 /* Data & Sources */
@@ -797,6 +880,29 @@ body.capture-mode .bracket-watermark {
   font-style: italic;
 }
 
+/* Toast */
+.toast {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  animation: toast-in 0.2s ease;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-0.5rem); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
 /* ========== Mobile ========== */
 
 .mobile-loading {
@@ -815,7 +921,6 @@ body.capture-mode .bracket-watermark {
 
 @media (max-width: 767px) {
   /* Hide desktop, show mobile */
-  .desktop-only-gate { display: none !important; }
   .app { display: none !important; }
   .mobile-app { display: flex; flex-direction: column; min-height: 100vh; }
 
@@ -876,17 +981,21 @@ body.capture-mode .bracket-watermark {
   .mobile-panels {
     display: flex;
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    flex: 1;
   }
   .mobile-panels::-webkit-scrollbar { display: none; }
 
   .mobile-panel {
     min-width: 100%;
+    max-width: 100%;
     scroll-snap-align: start;
-    padding: 0.75rem 0.75rem 1rem;
+    padding: 0.75rem 0.75rem calc(3.5rem + env(safe-area-inset-bottom) + 1rem);
+    overflow-y: auto;
+    max-height: calc(100vh - 4.5rem);
+    max-height: calc(100dvh - 4.5rem);
   }
 
   /* Mobile region */
@@ -916,6 +1025,20 @@ body.capture-mode .bracket-watermark {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+  }
+
+  /* Round tab — region sub-headers */
+  .mobile-round-region {
+    margin-bottom: 1.25rem;
+  }
+
+  .mobile-round-region-header {
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--gray-lowlight);
   }
 
   /* Game tiles full-width + larger tap targets */
@@ -1002,8 +1125,91 @@ body.capture-mode .bracket-watermark {
     letter-spacing: 0.08em;
   }
 
+  /* The panel containing the full bracket overview must not scroll —
+     the overview handles its own pan/zoom via transforms */
+  .mobile-panel:has(.mobile-overview) {
+    overflow: hidden !important;
+    touch-action: none;
+  }
+
+  /* Mobile bracket overview (Full tab) */
+  .mobile-overview {
+    overflow: hidden;
+    touch-action: none;
+    width: 100%;
+    height: calc(100vh - 4.5rem - 3.5rem - env(safe-area-inset-bottom));
+    height: calc(100dvh - 4.5rem - 3.5rem - env(safe-area-inset-bottom));
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .mobile-overview-inner {
+    pointer-events: none;
+  }
+
+  .mobile-overview .bracket-header--sticky {
+    position: relative;
+    z-index: auto;
+  }
+
+  .mobile-overview .header-actions {
+    display: none;
+  }
+
+  .mobile-overview .bracket-center .first-four {
+    display: none;
+  }
+
+  .mobile-overview .bracket-watermark {
+    display: none;
+  }
+
+  .mobile-overview .bracket {
+    position: static;
+  }
+
   /* Clear space for fixed tab bar + safe area */
   .mobile-app > .data-sources {
     padding-bottom: calc(3.5rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* Mobile landscape — compact header and tab bar */
+@media (max-width: 767px) and (orientation: landscape) {
+  .mobile-header {
+    padding: 0.2rem 0.5rem 0.15rem;
+  }
+
+  .mobile-header .odds-total {
+    display: none;
+  }
+
+  .mobile-title {
+    font-size: 0.9rem;
+  }
+
+  .mobile-tab-bar {
+    padding: 0.2rem 0 calc(0.2rem + env(safe-area-inset-bottom));
+  }
+
+  .mobile-tab {
+    font-size: 0.85rem;
+    padding: 0.2rem 0;
+  }
+
+  .mobile-tab-label {
+    display: none;
+  }
+
+  .mobile-panel {
+    padding: 0.5rem 0.75rem;
+    max-height: calc(100vh - 2rem - 2.5rem);
+    max-height: calc(100dvh - 2rem - 2.5rem);
+  }
+
+  .mobile-overview {
+    height: calc(100vh - 2rem - 2.5rem - env(safe-area-inset-bottom));
+    height: calc(100dvh - 2rem - 2.5rem - env(safe-area-inset-bottom));
   }
 }

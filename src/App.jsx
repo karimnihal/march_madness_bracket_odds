@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react';
 import useBracket from './hooks/useBracket';
-import useIsMobile from './hooks/useIsMobile';
+import useDeviceMode from './hooks/useIsMobile';
 import DataSources from './components/DataSources';
+import Toast from './components/Toast';
 
 const Bracket = lazy(() => import('./components/Bracket'));
 const MobileBracket = lazy(() => import('./components/MobileBracket'));
@@ -19,40 +20,32 @@ export default function App() {
     gameTree,
     teamsById,
     firstFourData,
+    getShareURL,
   } = useBracket();
 
-  const isMobile = useIsMobile();
+  const mode = useDeviceMode();
 
   const sharedProps = {
     picks, makePick, makeFFPick, getGameTeams, odds, reset,
-    fillRandomRound, fillRandomBracket, gameTree, teamsById, firstFourData,
+    fillRandomRound, fillRandomBracket, gameTree, teamsById, firstFourData, getShareURL,
   };
 
-  if (isMobile) {
+  if (mode === 'mobile') {
     return (
       <Suspense fallback={<div className="mobile-loading">Loading...</div>}>
         <MobileBracket {...sharedProps} />
+        <Toast />
       </Suspense>
     );
   }
 
+  // tablet + desktop both show full bracket (auto-zoom handles fitting)
   return (
     <Suspense fallback={null}>
       <div className="app">
-        <Bracket
-          picks={picks}
-          makePick={makePick}
-          getGameTeams={getGameTeams}
-          gameTree={gameTree}
-          teamsById={teamsById}
-          odds={odds}
-          firstFourData={firstFourData}
-          makeFFPick={makeFFPick}
-          reset={reset}
-          fillRandomRound={fillRandomRound}
-          fillRandomBracket={fillRandomBracket}
-        />
+        <Bracket {...sharedProps} />
         <DataSources />
+        <Toast />
       </div>
     </Suspense>
   );

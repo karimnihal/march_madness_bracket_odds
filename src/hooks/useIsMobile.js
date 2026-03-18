@@ -1,16 +1,31 @@
 import { useState, useEffect } from 'react';
 
-const MOBILE_QUERY = '(max-width: 767px)';
+// mobile: phone portrait/landscape (short side <768px)
+// tablet: 768-1099px — shows desktop bracket with auto-zoom
+// desktop: 1100px+
+function getMode() {
+  // Keep desktop mode stable under browser zoom:
+  // on non-touch devices, zoom should not force tablet/mobile mode.
+  const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+  const zoomScale = window.visualViewport?.scale || 1;
+  const effectiveWidth = window.innerWidth * zoomScale;
+  const effectiveHeight = window.innerHeight * zoomScale;
+  const shortSide = Math.min(effectiveWidth, effectiveHeight);
 
-export default function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches);
+  if (!isCoarsePointer) return 'desktop';
+  if (shortSide < 768) return 'mobile';
+  if (effectiveWidth < 1100) return 'tablet';
+  return 'desktop';
+}
+
+export default function useDeviceMode() {
+  const [mode, setMode] = useState(getMode);
 
   useEffect(() => {
-    const mql = window.matchMedia(MOBILE_QUERY);
-    const handler = (e) => setIsMobile(e.matches);
-    mql.addEventListener('change', handler);
-    return () => mql.removeEventListener('change', handler);
+    const handler = () => setMode(getMode());
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
   }, []);
 
-  return isMobile;
+  return mode;
 }

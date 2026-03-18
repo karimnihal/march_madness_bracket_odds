@@ -1,20 +1,26 @@
 import Game from './Game';
 import { getPathProbForGame, getNormalizedMatchupOddsForGame } from '../utils/odds';
 
-const roundConfig = [
-  { round: 64, count: 8, prefix: 'R64', label: 'ROUND OF 64' },
-  { round: 32, count: 4, prefix: 'R32', label: 'ROUND OF 32' },
-  { round: 16, count: 2, prefix: 'S16', label: 'SWEET 16' },
-  { round: 8, count: 1, prefix: 'E8', label: 'ELITE 8' },
-];
+const REGIONS = ['East', 'South', 'West', 'Midwest'];
 
-export default function MobileRegion({ region, picks, onPick, getGameTeams, gameTree }) {
+const ROUND_CONFIG = {
+  R64: { prefix: 'R64', count: 8, round: 64, label: 'ROUND OF 64' },
+  R32: { prefix: 'R32', count: 4, round: 32, label: 'ROUND OF 32' },
+  S16: { prefix: 'S16', count: 2, round: 16, label: 'SWEET 16' },
+  E8:  { prefix: 'E8',  count: 1, round: 8,  label: 'ELITE 8' },
+};
+
+export default function MobileRound({ roundTab, picks, onPick, getGameTeams, gameTree, onPickComplete }) {
+  const config = ROUND_CONFIG[roundTab];
+  if (!config) return null;
+  const { prefix, count, round, label } = config;
+
   return (
-    <div className="mobile-region">
-      <h3 className="mobile-region-title">{region.toUpperCase()}</h3>
-      {roundConfig.map(({ round, count, prefix, label }) => (
-        <div key={prefix} className="mobile-round">
-          <div className="mobile-round-label">{label}</div>
+    <div className="mobile-round-tab">
+      <div className="mobile-round-label">{label}</div>
+      {REGIONS.map((region) => (
+        <div key={region} className="mobile-round-region">
+          <div className="mobile-round-region-header">{region.toUpperCase()}</div>
           <div className="mobile-round-games">
             {Array.from({ length: count }, (_, i) => {
               const gameId = `${region}-${prefix}-${i + 1}`;
@@ -30,10 +36,14 @@ export default function MobileRegion({ region, picks, onPick, getGameTeams, game
               return (
                 <Game
                   key={gameId}
+                  gameId={gameId}
                   team1={team1}
                   team2={team2}
                   pick={picks[gameId]}
-                  onPick={(teamId) => onPick(gameId, teamId)}
+                  onPick={(teamId) => {
+                    onPick(gameId, teamId);
+                    if (teamId && onPickComplete) onPickComplete(gameId);
+                  }}
                   round={round}
                   moneylines={game?.moneylines}
                   pathProb={pathProb}

@@ -1,6 +1,6 @@
 import { matchupProb, formatOdds } from '../utils/odds';
 
-export default function Game({ team1, team2, pick, onPick, round, moneylines, pathProb, matchupOddsProb }) {
+export default function Game({ team1, team2, pick, onPick, round, moneylines, pathProb, matchupOddsProb, gameId }) {
   const shouldShowDerivedOdds = round < 64;
   const showExactPathOdds = round < 32 && round !== 2; // S16, E8, F4 only (not R32, not final)
   const pathValue = pathProb != null ? formatOdds(pathProb) : '';
@@ -30,7 +30,7 @@ export default function Game({ team1, team2, pick, onPick, round, moneylines, pa
 
   if (!team1 && !team2) {
     return (
-      <div className="game game--empty">
+      <div className="game game--empty" id={gameId ? `game-${gameId}` : undefined}>
         {renderExactPathOdds()}
         <div className="game-slot" />
         <div className="game-slot" />
@@ -84,7 +84,7 @@ export default function Game({ team1, team2, pick, onPick, round, moneylines, pa
   };
 
   return (
-    <div className={`game ${pick ? 'game--picked' : ''}`}>
+    <div className={`game ${pick ? 'game--picked' : ''}`} id={gameId ? `game-${gameId}` : undefined}>
       {renderExactPathOdds()}
       {renderTeam(team1, prob1)}
       {renderTeam(team2, prob2)}

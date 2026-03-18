@@ -1,8 +1,7 @@
 import Game from './Game';
-import FirstFour from './FirstFour';
 import { getPathProbForGame, getNormalizedMatchupOddsForGame, formatOdds, formatVegasChampOdds } from '../utils/odds';
 
-export default function MobileFinalFour({ picks, makePick, getGameTeams, gameTree, teamsById, firstFourData, makeFFPick }) {
+export default function MobileFinalFour({ picks, makePick, getGameTeams, gameTree, teamsById, onPickComplete }) {
   const renderGame = (gameId) => {
     const [team1, team2] = getGameTeams(gameId);
     const pathProb = getPathProbForGame(gameId, gameTree, picks, getGameTeams);
@@ -10,10 +9,14 @@ export default function MobileFinalFour({ picks, makePick, getGameTeams, gameTre
     return (
       <Game
         key={gameId}
+        gameId={gameId}
         team1={team1}
         team2={team2}
         pick={picks[gameId]}
-        onPick={(teamId) => makePick(gameId, teamId)}
+        onPick={(teamId) => {
+          makePick(gameId, teamId);
+          if (teamId && onPickComplete) onPickComplete(gameId);
+        }}
         round={gameTree[gameId].round}
         pathProb={pathProb}
         matchupOddsProb={matchupOddsProb}
@@ -23,13 +26,6 @@ export default function MobileFinalFour({ picks, makePick, getGameTeams, gameTre
 
   return (
     <div className="mobile-final-four">
-      <FirstFour
-        firstFourData={firstFourData}
-        picks={picks}
-        onPick={makeFFPick}
-        teamsById={teamsById}
-      />
-
       <div className="mobile-round">
         <div className="mobile-round-label">FINAL FOUR</div>
         <div className="mobile-round-games">

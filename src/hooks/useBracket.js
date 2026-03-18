@@ -3,6 +3,7 @@ import teamsData from '../data/teams.json';
 import firstFourData from '../data/firstFour.json';
 import bracketData from '../data/bracket.json';
 import { matchupProb, bracketOdds } from '../utils/odds';
+import { getPicksFromHash, getShareURL as buildShareURL } from '../utils/sharing';
 
 const STORAGE_KEY = 'mm2026_picks';
 
@@ -147,6 +148,13 @@ function getR64GamesForFFSlot(slotTeamId) {
 
 export default function useBracket() {
   const [picks, setPicks] = useState(() => {
+    // Check URL hash for shared picks first
+    const hashPicks = getPicksFromHash();
+    if (hashPicks) {
+      // Clear hash so it doesn't persist on refresh
+      window.history.replaceState(null, '', window.location.pathname);
+      return hashPicks;
+    }
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       return saved ? JSON.parse(saved) : {};
@@ -425,6 +433,8 @@ export default function useBracket() {
     });
   }, [getGameTeams]);
 
+  const getShareURL = useCallback(() => buildShareURL(picks), [picks]);
+
   return {
     picks,
     makePick,
@@ -441,5 +451,6 @@ export default function useBracket() {
     teamsById,
     firstFourData,
     regions,
+    getShareURL,
   };
 }
