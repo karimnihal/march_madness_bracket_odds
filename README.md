@@ -38,4 +38,4 @@ src/
 
 ## Data sources / attribution
 
-This project derives probabilities from sportsbook markets plus public historical seed results, and displays the resulting implied probabilities. The exact sources and retrieval dates are listed in `src/data/sources.json` (and mirrored in the site’s “DATA & SOURCES” section).
+This project derives probabilities from sportsbook markets plus public historical seed results, and displays the resulting implied probabilities. The exact sources and retrieval dates are listed in `src/data/sources.json` (and mirrored in the site’s “About" section).
