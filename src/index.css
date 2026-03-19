@@ -791,8 +791,7 @@ body.capture-mode .bracket-watermark,
   margin-top: 2rem;
   border-top: 1px solid var(--gray-border);
   padding-top: 1rem;
-  /* Ensure bottom nav/panels never cover this section */
-  padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  padding-bottom: 0;
 }
 
 .data-sources-toggle {
@@ -887,6 +886,7 @@ body.capture-mode .bracket-watermark,
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: 100dvh;
   font-family: var(--font-display);
   font-size: 1.2rem;
   color: var(--gray-mid);
@@ -899,6 +899,7 @@ body.capture-mode .bracket-watermark,
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-height: 100dvh;
   --overlayTop: 4.5rem;
 
   /* Mobile header */

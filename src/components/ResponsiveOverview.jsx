@@ -125,6 +125,77 @@ export default function ResponsiveOverview(props) {
     recalc();
   }, [recalc, isMobileLike, isFullMode]);
 
+  useEffect(() => {
+    // Desktop-only horizontal-fit scaling:
+    // - Landscape: fit full bracket width (designed for ~1080p at 100%).
+    // - Portrait: fit half the bracket width (so you see ~one side).
+    const applyDesktopScale = () => {
+      if (isMobileLike) return;
+
+      const root = rootRef.current;
+      if (!root) return;
+
+      const bracketSides = root.querySelector('.bracket-sides');
+      if (!bracketSides) return;
+
+      // Never scale exports/capture geometry.
+      if (document.body.classList.contains('capture-mode') || bracketSides.closest('.capture-fixed')) {
+        bracketSides.style.transform = '';
+        bracketSides.style.transformOrigin = '';
+        return;
+      }
+
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      if (vw <= 0 || vh <= 0) return;
+
+      // Prefer measured content width; fall back to clientWidth.
+      const bw = Math.max(bracketSides.scrollWidth, bracketSides.clientWidth);
+      if (!bw) return;
+
+      const isLandscape = vw >= vh;
+      const targetVisibleFraction = isLandscape ? 1 : 0.5; // portrait shows half bracket width
+      const targetWidth = vw / targetVisibleFraction;
+
+      // Scale based purely on horizontal fit. Allow scaling up on large displays,
+      // but cap it so the UI doesn't become comically oversized.
+      const rawScale = targetWidth / bw;
+      // 4k (2160p) is ~2x 1080p; allow scaling up accordingly.
+      const scale = Math.min(2.0, Math.max(0.5, rawScale));
+      bracketSides.style.transformOrigin = 'top center';
+      bracketSides.style.transform = `scale(${scale})`;
+    };
+
+    applyDesktopScale();
+    window.addEventListener('resize', applyDesktopScale);
+    return () => window.removeEventListener('resize', applyDesktopScale);
+  }, [isMobileLike]);
+
+  useEffect(() => {
+    // On desktop, start horizontally scrolled to dead center on load.
+    if (isMobileLike) return;
+    const root = rootRef.current;
+    if (!root) return;
+
+    const scroller = root.querySelector('.bracket-zoom-container');
+    if (!scroller) return;
+
+    const centerScroll = () => {
+      const max = scroller.scrollWidth - scroller.clientWidth;
+      if (max <= 0) return;
+      scroller.scrollLeft = Math.max(0, Math.round(max / 2));
+    };
+
+    // Wait for layout + any scaling to apply before measuring.
+    const raf1 = requestAnimationFrame(() => {
+      const raf2 = requestAnimationFrame(centerScroll);
+      // Cleanup inner RAF if effect re-runs quickly.
+      return () => cancelAnimationFrame(raf2);
+    });
+
+    return () => cancelAnimationFrame(raf1);
+  }, [isMobileLike]);
+
   const getDist = (a, b) => Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
   const getCenter = (a, b) => ({ x: (a.clientX + b.clientX) / 2, y: (a.clientY + b.clientY) / 2 });
 
