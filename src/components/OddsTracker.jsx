@@ -1,8 +1,8 @@
 import { formatOdds } from '../utils/odds';
 
 export default function OddsTracker({ odds }) {
-  const scrollToDataSources = () => {
-    const el = document.getElementById('data-sources');
+  const scrollToAbout = () => {
+    const el = document.getElementById('about');
     el?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -12,9 +12,9 @@ export default function OddsTracker({ odds }) {
       <button
         type="button"
         className="odds-total-info"
-        onClick={scrollToDataSources}
-        title="See details in Data & Sources section below"
-        aria-label="See details in Data & Sources section below"
+        onClick={scrollToAbout}
+        title="See details in About section below"
+        aria-label="See details in About section below"
       >
         &#9432;
       </button>

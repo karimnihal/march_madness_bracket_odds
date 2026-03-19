@@ -794,6 +794,13 @@ body.capture-mode .bracket-watermark,
   padding-bottom: 0;
 }
 
+/* Keep Data & Sources clear of bottom nav only on small portrait screens */
+@media (orientation: portrait) and (max-width: 900px) {
+  .data-sources {
+    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
+  }
+}
+
 .data-sources-toggle {
   display: flex;
   align-items: center;

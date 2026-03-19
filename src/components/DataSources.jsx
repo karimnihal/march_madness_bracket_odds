@@ -5,7 +5,7 @@ export default function DataSources() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="data-sources" id="data-sources">
+    <section className="data-sources" id="about">
       <button
         type="button"
         className="data-sources-toggle"
@@ -13,14 +13,23 @@ export default function DataSources() {
         aria-expanded={isOpen}
       >
         <span className="data-sources-toggle-icon">{isOpen ? '−' : '+'}</span>
-        <span className="data-sources-toggle-label">DATA & SOURCES</span>
+        <span className="data-sources-toggle-label">ABOUT</span>
       </button>
       {isOpen && (
         <div className="data-sources-content">
+          <h4 className="data-sources-heading">How To</h4>
+          <ul className="data-sources-list">
+            <li><strong>Pick winners:</strong> Click a team in any game tile to advance them. Click the same team again to clear that pick.</li>
+            <li><strong>Later rounds unlock automatically:</strong> Once both feeder games have picks, the next-round matchup appears and becomes pickable.</li>
+            <li><strong>Control buttons (top left):</strong> Use the menu to reset, fill a random round, or fill a full random bracket.</li>
+            <li><strong>Share / download (top right):</strong> Download exports an image. Sharing uses a URL that encodes your current picks.</li>
+            <li><strong>What the odds mean:</strong> Each tile shows win odds for the two teams. Later rounds also show MATCHUP and (for some rounds) EXACT PATH.</li>
+          </ul>
+
           <h4 className="data-sources-heading">Matchup Win Odds</h4>
           <ul className="data-sources-list">
-            <li><strong>First Four & most Round of 64 games:</strong> Win probabilities come from DraftKings moneylines, de-vigged.</li>
-            <li><strong>R64 games fed by First Four:</strong> No pre-game moneylines exist; we use a seed-history–led blended model.</li>
+            <li><strong>Round of 64 games with posted lines:</strong> Win probabilities come from DraftKings moneylines, de-vigged.</li>
+            <li><strong>Round of 64 games without posted lines:</strong> We use a seed-history–led blended model.</li>
             <li><strong>Round of 32 through Championship:</strong> We use the same blended model (historical seed-vs-seed records + seed advancement rates, adjusted by market strength).</li>
           </ul>
 

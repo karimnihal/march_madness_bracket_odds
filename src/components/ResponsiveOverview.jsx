@@ -157,11 +157,11 @@ export default function ResponsiveOverview(props) {
       const targetVisibleFraction = isLandscape ? 1 : 0.5; // portrait shows half bracket width
       const targetWidth = vw / targetVisibleFraction;
 
-      // Scale based purely on horizontal fit. Allow scaling up on large displays,
-      // but cap it so the UI doesn't become comically oversized.
+      // Scale based purely on horizontal fit.
       const rawScale = targetWidth / bw;
-      // 4k (2160p) is ~2x 1080p; allow scaling up accordingly.
-      const scale = Math.min(2.0, Math.max(0.5, rawScale));
+      // Keep a reasonable minimum so tiny windows don't collapse too far.
+      // No upper cap: higher resolutions should continue to scale up.
+      const scale = Math.max(0.5, rawScale);
       bracketSides.style.transformOrigin = 'top center';
       bracketSides.style.transform = `scale(${scale})`;
     };

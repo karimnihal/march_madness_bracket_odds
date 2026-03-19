@@ -6,17 +6,17 @@ Instead of trying to “recommend” picks, the app focuses on one thing: **show
 
 ## What it does
 
-- **Pick a full bracket** (including First Four, if present in the data).
+- **Pick a full 63-game bracket** (Round of 64 through Championship).
 - **See per-game win probabilities**:
-  - Round of 64 + First Four use **moneyline-implied probabilities** (de-vigged).
-  - Later rounds use **Log5** derived from teams’ championship implied probabilities.
+  - Round of 64 games with posted lines use **moneyline-implied probabilities** (de-vigged).
+  - Round of 64 games without posted lines and all later rounds use a **seed-history-led blended model**.
 - **Track cumulative bracket odds** as you pick: a sticky tracker compounds the probability of your chosen winners and displays it as **“1 in X”**.
 - **Export** your completed bracket as an image (via `html2canvas`).
 
 ## How the math works (high level)
 
-- **First Four + most Round of 64 games**: we convert DraftKings American moneylines to implied probability and **de-vig** by normalizing both teams to sum to 1.
-- **Round of 64 games without posted lines** (the games fed by First Four) and **Round of 32 through Championship**: we use a **seed-history–led blended model**:
+- **Round of 64 games with posted lines**: we convert DraftKings American moneylines to implied probability and **de-vig** by normalizing both teams to sum to 1.
+- **Round of 64 games without posted lines** and **Round of 32 through Championship**: we use a **seed-history–led blended model**:
   - Historical **seed vs. seed** win rates by round (1985–2025, excluding 2020)
   - Historical **seed advancement rates** (how often each seed reaches each round)
   - A light **market-strength adjustment** using each team’s pre-tournament championship implied probability (via Log5), acting as a tiebreaker within seed “buckets”
