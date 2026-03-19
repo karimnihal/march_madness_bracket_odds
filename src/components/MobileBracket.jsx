@@ -2,7 +2,6 @@ import { useState, useRef, useCallback } from 'react';
 import MobileRound from './MobileRound';
 import MobileFinalFour from './MobileFinalFour';
 import MobileBracketOverview from './MobileBracketOverview';
-import FirstFour from './FirstFour';
 import OddsTracker from './OddsTracker';
 import DownloadButton from './DownloadButton';
 import ControlsDropdown from './ControlsDropdown';
@@ -11,7 +10,7 @@ import { triggerToast } from './Toast';
 
 import { TABS, ROUND_GAME_IDS, CHAMP_GAME_IDS, SHORT, LABELS } from './mobileTabs/constants';
 
-export default function MobileBracket({ picks, makePick, makeFFPick, getGameTeams, odds, reset, fillRandomRound, fillRandomBracket, gameTree, teamsById, firstFourData, getShareURL }) {
+export default function MobileBracket({ picks, makePick, getGameTeams, odds, reset, fillRandomRound, fillRandomBracket, gameTree, teamsById, getShareURL }) {
   const [activeTab, setActiveTab] = useState(0);
   const scrollRef = useRef(null);
   const programmaticScroll = useRef(false);
@@ -101,16 +100,6 @@ export default function MobileBracket({ picks, makePick, makeFFPick, getGameTeam
 
   const renderTabContent = (tabIndex) => {
     const tab = TABS[tabIndex];
-    if (tab === 'First Four') {
-      return (
-        <FirstFour
-          firstFourData={firstFourData}
-          picks={picks}
-          onPick={makeFFPick}
-          teamsById={teamsById}
-        />
-      );
-    }
     if (tab === 'Full') {
       return (
         <MobileBracketOverview
@@ -120,8 +109,6 @@ export default function MobileBracket({ picks, makePick, makeFFPick, getGameTeam
           gameTree={gameTree}
           teamsById={teamsById}
           odds={odds}
-          firstFourData={firstFourData}
-          makeFFPick={makeFFPick}
           reset={reset}
           fillRandomRound={fillRandomRound}
           fillRandomBracket={fillRandomBracket}

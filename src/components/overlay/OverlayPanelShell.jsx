@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 const SECTIONS = [
-  { id: 'firstFour', label: 'FF' },
   { id: 'r64', label: '64' },
   { id: 'r32', label: '32' },
   { id: 's16', label: '16' },

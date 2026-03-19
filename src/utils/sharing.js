@@ -1,11 +1,7 @@
 import teamsData from '../data/teams.json';
-import firstFourData from '../data/firstFour.json';
 
-// Build sorted team ID list (includes FF participants + FF slot IDs)
+// Build sorted team ID list
 const allTeamIds = new Set(teamsData.map(t => t.id));
-firstFourData.forEach(ff => {
-  ff.teams.forEach(id => allTeamIds.add(id));
-});
 const TEAM_LIST = [...allTeamIds].sort();
 const TEAM_TO_IDX = {};
 TEAM_LIST.forEach((id, i) => { TEAM_TO_IDX[id] = i; });
@@ -15,9 +11,6 @@ const UNPICKED = 255;
 // Deterministic game ID order: FF games, then bracket games by region/round
 const regions = ['East', 'South', 'West', 'Midwest'];
 const GAME_IDS = [];
-
-// First Four
-firstFourData.forEach(ff => GAME_IDS.push(ff.id));
 
 // Regional rounds
 for (const region of regions) {

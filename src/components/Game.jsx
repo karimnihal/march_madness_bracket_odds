@@ -10,7 +10,7 @@ export default function Game({ team1, team2, pick, onPick, round, moneylines, pa
     if (!shouldShowDerivedOdds || !showExactPathOdds) return null;
     return (
       <div className="game-exact-path-odds">
-        <span className="game-matchup-prob-label">EXACT PATH ODDS</span>
+        <span className="game-matchup-prob-label">EXACT PATH</span>
         <span className={`game-matchup-prob-value ${pathProb == null ? 'game-matchup-prob-value--empty' : ''}`}>{pathValue}</span>
       </div>
     );
@@ -21,7 +21,7 @@ export default function Game({ team1, team2, pick, onPick, round, moneylines, pa
     return (
       <div className="game-derived-odds">
         <div className="game-derived-odds-row">
-          <span className="game-matchup-prob-label">MATCHUP ODDS</span>
+          <span className="game-matchup-prob-label">MATCHUP</span>
           <span className={`game-matchup-prob-value ${matchupOddsProb == null ? 'game-matchup-prob-value--empty' : ''}`}>{matchupValue}</span>
         </div>
       </div>

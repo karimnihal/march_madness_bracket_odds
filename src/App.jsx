@@ -7,7 +7,6 @@ export default function App() {
   const {
     picks,
     makePick,
-    makeFFPick,
     getGameTeams,
     odds,
     reset,
@@ -15,13 +14,12 @@ export default function App() {
     fillRandomBracket,
     gameTree,
     teamsById,
-    firstFourData,
     getShareURL,
   } = useBracket();
 
   const sharedProps = {
-    picks, makePick, makeFFPick, getGameTeams, odds, reset,
-    fillRandomRound, fillRandomBracket, gameTree, teamsById, firstFourData, getShareURL,
+    picks, makePick, getGameTeams, odds, reset,
+    fillRandomRound, fillRandomBracket, gameTree, teamsById, getShareURL,
   };
 
   return (

@@ -96,12 +96,11 @@
           "id": "South-R64-1",
           "round": 64,
           "topTeam": "florida",
-          "bottomTeam": "ff-lehigh-pvamu",
+          "bottomTeam": "prairie-view-am",
           "moneylines": null,
           "spread": null,
           "total": null,
-          "bpi": null,
-          "note": "TBD — awaits First Four winner (ff3)"
+          "bpi": null
         },
         {
           "id": "South-R64-2",
@@ -224,12 +223,11 @@
           "id": "West-R64-5",
           "round": 64,
           "topTeam": "byu",
-          "bottomTeam": "ff-ncstate-texas",
+          "bottomTeam": "texas",
           "moneylines": null,
           "spread": null,
           "total": null,
-          "bpi": null,
-          "note": "TBD — awaits First Four winner (ff2)"
+          "bpi": null
         },
         {
           "id": "West-R64-6",
@@ -272,12 +270,11 @@
           "id": "Midwest-R64-1",
           "round": 64,
           "topTeam": "michigan",
-          "bottomTeam": "ff-howard-umbc",
+          "bottomTeam": "howard",
           "moneylines": null,
           "spread": null,
           "total": null,
-          "bpi": null,
-          "note": "TBD — awaits First Four winner (ff1)"
+          "bpi": null
         },
         {
           "id": "Midwest-R64-2",
@@ -313,12 +310,11 @@
           "id": "Midwest-R64-5",
           "round": 64,
           "topTeam": "tennessee",
-          "bottomTeam": "ff-smu-miamioh",
+          "bottomTeam": "miami-oh",
           "moneylines": null,
           "spread": null,
           "total": null,
-          "bpi": null,
-          "note": "TBD — awaits First Four winner (ff4)"
+          "bpi": null
         },
         {
           "id": "Midwest-R64-6",

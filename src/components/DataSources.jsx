@@ -24,14 +24,14 @@ export default function DataSources() {
             <li><strong>Round of 32 through Championship:</strong> We use the same blended model (historical seed-vs-seed records + seed advancement rates, adjusted by market strength).</li>
           </ul>
 
-          <h4 className="data-sources-heading">EXACT PATH ODDS (S16, E8, F4)</h4>
+          <h4 className="data-sources-heading">EXACT PATH (S16, E8, F4)</h4>
           <p className="data-sources-para">
-            EXACT PATH ODDS is shown for Sweet 16, Elite 8, and Final Four games. It is the probability that the exact currently shown pairing occurs, computed by multiplying the win probabilities across every feeder result required to produce that pairing (based on your picks along the path).
+            EXACT PATH is shown for Sweet 16, Elite 8, and Final Four games. It is the probability that the exact currently shown pairing occurs, computed by multiplying the win probabilities across every feeder result required to produce that pairing (based on your picks along the path).
           </p>
 
-          <h4 className="data-sources-heading">MATCHUP ODDS (R32 and Beyond)</h4>
+          <h4 className="data-sources-heading">MATCHUP (R32 and Beyond)</h4>
           <p className="data-sources-para">
-            MATCHUP ODDS is shown for Round of 32 and later. It is the probability of the currently shown pairing normalized against all potential pairings that could occur in that same game slot. This uses a reach-probability distribution (from our win-odds model) to account for all plausible opponents, not just the picked path.
+            MATCHUP is shown for Round of 32 and later. It is the probability of the currently shown pairing normalized against all potential pairings that could occur in that same game slot. This uses a reach-probability distribution (from our win-odds model) to account for all plausible opponents, not just the picked path.
           </p>
 
           <h4 className="data-sources-heading">Champion Box (AVG PRE-TOURNEY VEGAS ODDS)</h4>

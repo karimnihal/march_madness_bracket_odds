@@ -10,13 +10,15 @@
   --gray-border: #333333;
   --gray-mid: #555555;
   --font-display: 'Barlow Condensed', sans-serif;
-  --desktop-game-width: 120px;
+  --desktop-game-width: 160px;
   --desktop-round-gap: 0.32rem;
   --desktop-final-gap: 1rem;
-  --desktop-champ-width: 168px;
+  /* Champ box should comfortably fit a full game tile inside its padding */
+  --desktop-champ-width: calc(var(--desktop-game-width) + 2rem);
   --desktop-center-width: calc((var(--desktop-game-width) * 2) + (var(--desktop-final-gap) * 2) + var(--desktop-champ-width));
   --desktop-region-width: calc((var(--desktop-game-width) * 4) + (var(--desktop-round-gap) * 3));
   --desktop-bracket-width: calc((var(--desktop-region-width) * 2) + var(--desktop-center-width));
+  --desktop-side-pull-in: 3rem;
   --panelHeightPortrait: clamp(360px, 80vh, 720px);
   --panelWidthLandscape: clamp(360px, 30vw, 620px);
   --navRailWidth: 3.75rem;
@@ -37,8 +39,6 @@ body {
 
 @media (max-width: 1400px) {
   .game { min-width: 140px; }
-  .ff-game { width: 140px; }
-  .first-four-games { grid-template-columns: repeat(2, minmax(0, 140px)); }
   .bracket-center { min-width: 170px; }
   .region-rounds { gap: 0.35rem; }
   .round--r32 { padding: 0.75rem 0; }
@@ -48,10 +48,8 @@ body {
 
 @media (max-width: 1200px) {
   .game { min-width: 125px; font-size: 0.72rem; }
-  .ff-game { width: 125px; font-size: 0.72rem; }
-  .first-four-games { grid-template-columns: repeat(2, minmax(0, 125px)); }
   .bracket-center { min-width: 150px; padding: 0 0.25rem; }
-  .championship-center { min-width: 180px; max-width: 220px; }
+  .championship-center { min-width: calc(var(--desktop-game-width) + 2rem); max-width: calc(var(--desktop-game-width) + 2rem); }
   .final-four { gap: 1rem; }
   .region-rounds { gap: 0.25rem; }
   .round--r32 { padding: 0.5rem 0; }
@@ -155,73 +153,6 @@ body {
   color: var(--blue-highlight);
   transition: all 0.3s ease;
   line-height: 1;
-}
-
-/* First Four */
-.first-four {
-  padding: 0.5rem 0 1rem;
-}
-
-.first-four-title {
-  font-weight: 900;
-  font-style: normal;
-  font-size: 1rem;
-  letter-spacing: 0.08em;
-  color: var(--gray-lowlight);
-  margin-bottom: 0.75rem;
-  text-align: center;
-}
-
-.first-four-games {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 160px));
-  gap: 0.75rem 1rem;
-  justify-content: center;
-}
-
-.ff-game {
-  background: var(--gray-warm);
-  border: 1px solid var(--gray-border);
-  border-radius: 3px;
-  overflow: hidden;
-  width: 160px;
-  flex: 0 0 auto;
-  font-size: 0.8rem;
-}
-
-.ff-game--picked {
-  border-color: var(--blue-highlight);
-}
-
-.ff-slot {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.5rem;
-  cursor: pointer;
-  transition: background 0.1s;
-}
-
-.ff-slot:hover {
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.ff-slot--picked {
-  background: rgba(29, 111, 232, 0.08);
-}
-
-.ff-slot--picked .team-name {
-  color: var(--white);
-}
-
-.ff-slot--picked .team-odds {
-  color: var(--blue-highlight);
-}
-
-.ff-slot--loser .team-name,
-.ff-slot--loser .team-odds {
-  color: var(--gray-lowlight);
-  text-decoration: line-through;
 }
 
 /* Game tile */
@@ -455,6 +386,7 @@ body.capture-mode .bracket,
   width: var(--desktop-bracket-width);
   min-width: var(--desktop-bracket-width);
   margin: 0 auto;
+  justify-content: center;
 }
 
 .game-exact-path-odds {
@@ -495,8 +427,6 @@ body.capture-mode .bracket,
   line-height: 1;
   flex: 1 1 auto;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -525,6 +455,16 @@ body.capture-mode .bracket,
   gap: 1.75rem;
 }
 
+.bracket-side--left {
+  margin-right: 0;
+  transform: translateX(var(--desktop-side-pull-in));
+}
+
+.bracket-side--right {
+  margin-left: 0;
+  transform: translateX(calc(var(--desktop-side-pull-in) * -1));
+}
+
 .bracket-center {
   position: relative;
   align-self: stretch;
@@ -534,12 +474,6 @@ body.capture-mode .bracket,
   justify-content: flex-start;
   min-width: 200px;
   padding: 0 0.35rem;
-}
-
-.bracket-center .first-four {
-  position: relative;
-  z-index: 1;
-  padding: 0.6rem 0 0.45rem;
 }
 
 .bracket-watermark {
@@ -642,6 +576,7 @@ body.capture-mode .bracket-watermark,
   padding: 1.5rem 0;
   margin-top: auto;
   margin-bottom: auto;
+  width: 100%;
 }
 
 /* Keep desktop geometry fixed on non-mobile app path */
@@ -651,20 +586,6 @@ body.capture-mode .bracket-watermark,
   min-width: var(--desktop-game-width);
   max-width: var(--desktop-game-width);
   font-size: 0.78rem;
-}
-
-.app .bracket .ff-game,
-.capture-fixed.bracket .ff-game {
-  width: var(--desktop-game-width);
-  min-width: var(--desktop-game-width);
-  max-width: var(--desktop-game-width);
-  font-size: 0.78rem;
-}
-
-.app .bracket .first-four-games,
-.capture-fixed.bracket .first-four-games {
-  grid-template-columns: repeat(2, minmax(0, var(--desktop-game-width)));
-  gap: 0.65rem 0.9rem;
 }
 
 .app .bracket .bracket-center,
@@ -679,6 +600,8 @@ body.capture-mode .bracket-watermark,
   flex: 0 0 auto;
   position: relative;
   z-index: 2;
+  display: flex;
+  justify-content: center;
 }
 
 .app .championship-center,
@@ -1085,29 +1008,6 @@ body.capture-mode .bracket-watermark,
     min-height: 2.75rem;
   }
 
-  .responsive-root .ff-game {
-    width: 100%;
-  }
-
-.overlay-panel-inner .ff-game {
-  width: 100%;
-}
-
-  .responsive-root .ff-slot {
-    padding: 0.45rem 0.75rem;
-    min-height: 2.5rem;
-  }
-
-  /* First Four inline on mobile */
-  .responsive-root .first-four {
-    margin-bottom: 1.25rem;
-  }
-
-  .responsive-root .first-four-games {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-  }
-
   /* Mobile Final Four */
   .mobile-final-four {
     padding: 0;
@@ -1280,15 +1180,6 @@ body.capture-mode .bracket-watermark,
 .overlay-panel-inner .game-slot {
   padding: 0.5rem 0.75rem;
   min-height: 2.75rem;
-}
-
-.overlay-panel-inner .ff-game {
-  width: 100%;
-}
-
-.overlay-panel-inner .ff-slot {
-  padding: 0.45rem 0.75rem;
-  min-height: 2.5rem;
 }
 
 /* Portrait: bottom nav + bottom sheet */

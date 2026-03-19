@@ -1,7 +1,7 @@
-export const TABS = ['First Four', 'R64', 'R32', 'S16', 'E8', 'Championship', 'Full'];
+export const TABS = ['R64', 'R32', 'S16', 'E8', 'Championship', 'Full'];
 
-export const SHORT = { 'First Four': 'FF', 'R64': '64', 'R32': '32', 'S16': '16', 'E8': 'E8', 'Championship': 'CH', 'Full': 'ALL' };
-export const LABELS = { 'First Four': 'First 4', 'R64': 'Rd of 64', 'R32': 'Rd of 32', 'S16': 'Sweet 16', 'E8': 'Elite 8', 'Championship': 'Champ', 'Full': 'Full' };
+export const SHORT = { 'R64': '64', 'R32': '32', 'S16': '16', 'E8': 'E8', 'Championship': 'CH', 'Full': 'ALL' };
+export const LABELS = { 'R64': 'Rd of 64', 'R32': 'Rd of 32', 'S16': 'Sweet 16', 'E8': 'Elite 8', 'Championship': 'Champ', 'Full': 'Full' };
 
 export const REGIONS = ['East', 'South', 'West', 'Midwest'];
 

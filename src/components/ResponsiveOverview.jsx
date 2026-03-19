@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Bracket from './Bracket';
-import FirstFour from './FirstFour';
-import MobileFirstFour from './MobileFirstFour';
 import MobileFinalFour from './MobileFinalFour';
 import MobileRound from './MobileRound';
 import OddsTracker from './OddsTracker';
@@ -236,9 +234,6 @@ export default function ResponsiveOverview(props) {
       <OverlayPanelShell
         onFullModeChange={setIsFullMode}
         onRenderPanel={(section) => {
-          if (section === 'firstFour') {
-            return <MobileFirstFour firstFourData={props.firstFourData} picks={props.picks} onPick={props.makeFFPick} teamsById={props.teamsById} />;
-          }
           if (section === 'r64') return <MobileRound roundTab="R64" picks={props.picks} onPick={props.makePick} getGameTeams={props.getGameTeams} gameTree={props.gameTree} />;
           if (section === 'r32') return <MobileRound roundTab="R32" picks={props.picks} onPick={props.makePick} getGameTeams={props.getGameTeams} gameTree={props.gameTree} />;
           if (section === 's16') return <MobileRound roundTab="S16" picks={props.picks} onPick={props.makePick} getGameTeams={props.getGameTeams} gameTree={props.gameTree} />;

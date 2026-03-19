@@ -153,17 +153,6 @@
     "champProb": 0.12485
   },
   {
-    "id": "ff-lehigh-pvamu",
-    "name": "Lehigh / PV A&M",
-    "shortName": "Lehigh/PVAMU",
-    "seed": 16,
-    "region": "South",
-    "champOdds": {},
-    "champProb": 0.0003,
-    "isFirstFourSlot": true,
-    "firstFourGame": "ff3"
-  },
-  {
     "id": "iowa",
     "name": "Iowa",
     "shortName": "Iowa",
@@ -371,15 +360,6 @@
     "champProb": 0.00449
   },
   {
-    "id": "nc-state",
-    "name": "NC State",
-    "shortName": "NC State",
-    "seed": 11,
-    "region": "West",
-    "champOdds": {},
-    "champProb": 0.000225
-  },
-  {
     "id": "texas",
     "name": "Texas",
     "shortName": "Texas",
@@ -387,26 +367,6 @@
     "region": "West",
     "champOdds": {},
     "champProb": 0.000225
-  },
-  {
-    "id": "ff-ncstate-texas",
-    "name": "NC State / Texas",
-    "shortName": "NCSt/Texas",
-    "seed": 11,
-    "region": "West",
-    "champOdds": {},
-    "champProb": 0.00045,
-    "isFirstFourSlot": true,
-    "firstFourGame": "ff2"
-  },
-  {
-    "id": "umbc",
-    "name": "UMBC",
-    "shortName": "UMBC",
-    "seed": 16,
-    "region": "Midwest",
-    "champOdds": {},
-    "champProb": 0.00019
   },
   {
     "id": "howard",
@@ -481,29 +441,9 @@
     "champProb": 0.22615
   },
   {
-    "id": "ff-howard-umbc",
-    "name": "Howard / UMBC",
-    "shortName": "Howard/UMBC",
-    "seed": 16,
-    "region": "Midwest",
-    "champOdds": {},
-    "champProb": 0.00038,
-    "isFirstFourSlot": true,
-    "firstFourGame": "ff1"
-  },
-  {
     "id": "prairie-view-am",
     "name": "Prairie View A&M",
     "shortName": "PV A&M",
-    "seed": 16,
-    "region": "South",
-    "champOdds": {},
-    "champProb": 0.00015
-  },
-  {
-    "id": "lehigh",
-    "name": "Lehigh",
-    "shortName": "Lehigh",
     "seed": 16,
     "region": "South",
     "champOdds": {},
@@ -573,29 +513,9 @@
     "champProb": 0.00936
   },
   {
-    "id": "ff-smu-miamioh",
-    "name": "SMU / Miami (OH)",
-    "shortName": "SMU/MiamiOH",
-    "seed": 11,
-    "region": "Midwest",
-    "champOdds": {},
-    "champProb": 0.00028,
-    "isFirstFourSlot": true,
-    "firstFourGame": "ff4"
-  },
-  {
     "id": "miami-oh",
     "name": "Miami (OH)",
     "shortName": "Miami OH",
-    "seed": 11,
-    "region": "Midwest",
-    "champOdds": {},
-    "champProb": 0.00014
-  },
-  {
-    "id": "smu",
-    "name": "SMU",
-    "shortName": "SMU",
     "seed": 11,
     "region": "Midwest",
     "champOdds": {},

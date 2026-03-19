@@ -1,13 +1,12 @@
 import Region from './Region';
 import Game from './Game';
 import OddsTracker from './OddsTracker';
-import FirstFour from './FirstFour';
 import DownloadButton from './DownloadButton';
 import ControlsDropdown from './ControlsDropdown';
 import { getPathProbForGame, getNormalizedMatchupOddsForGame, formatOdds, formatVegasChampOdds } from '../utils/odds';
 import { SITE_DOMAIN } from '../config';
 
-export default function Bracket({ picks, makePick, getGameTeams, gameTree, teamsById, odds, firstFourData, makeFFPick, reset, fillRandomRound, fillRandomBracket, getShareURL }) {
+export default function Bracket({ picks, makePick, getGameTeams, gameTree, teamsById, odds, reset, fillRandomRound, fillRandomBracket, getShareURL }) {
   const renderFinalGame = (gameId) => {
     const [team1, team2] = getGameTeams(gameId);
     const pathProb = getPathProbForGame(gameId, gameTree, picks, getGameTeams);
@@ -51,7 +50,6 @@ export default function Bracket({ picks, makePick, getGameTeams, gameTree, teams
               <h1 className="app-title">MARCH MADNESS 2026</h1>
               <OddsTracker odds={odds} />
             </div>
-            <FirstFour firstFourData={firstFourData} picks={picks} onPick={makeFFPick} teamsById={teamsById} />
             <div className="final-four">
               <div className="final-four-game final-four-game--left">
                 {renderFinalGame('F4-1')}

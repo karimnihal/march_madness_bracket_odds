@@ -1,6 +1,5 @@
 import seedHistory from '../data/seedHistory.json';
 import teamsData from '../data/teams.json';
-import firstFourData from '../data/firstFour.json';
 
 // American moneyline → implied probability
 export function impliedProb(moneyline) {
@@ -47,7 +46,6 @@ const ROUND_TO_HISTORY_KEY = {
   8: 'E8',
   4: 'F4',
   2: 'NCG',
-  firstFour: 'R64',
 };
 
 const ROUND_TO_ADVANCEMENT_KEY = {
@@ -57,7 +55,6 @@ const ROUND_TO_ADVANCEMENT_KEY = {
   8: 'F4',
   4: 'NCG',
   2: 'NC',
-  firstFour: 'R32',
 };
 
 const SEED_RANGE_MIN = 1;
@@ -66,7 +63,7 @@ const EPS = 1e-9;
 
 const seedToChampProbs = {};
 for (const team of teamsData) {
-  if (!team || team.isFirstFourSlot) continue;
+  if (!team) continue;
   if (!Number.isFinite(team.seed) || !Number.isFinite(team.champProb)) continue;
   if (!seedToChampProbs[team.seed]) seedToChampProbs[team.seed] = [];
   seedToChampProbs[team.seed].push(team.champProb);
@@ -88,24 +85,6 @@ for (let seed = SEED_RANGE_MIN; seed <= SEED_RANGE_MAX; seed++) {
 const teamsById = {};
 for (const team of teamsData) {
   if (team?.id) teamsById[team.id] = team;
-}
-
-const ffSlotToGame = {};
-for (const ff of firstFourData) {
-  ffSlotToGame[ff.feedsInto.slotTeamId] = ff;
-  ff.teams.forEach((teamId, idx) => {
-    if (!teamsById[teamId]) {
-      teamsById[teamId] = {
-        id: teamId,
-        name: ff.teamNames[idx],
-        shortName: ff.teamNames[idx],
-        seed: ff.seed,
-        region: ff.feedsInto.region,
-        champProb: 0,
-        isFirstFourParticipant: true,
-      };
-    }
-  });
 }
 
 const clampSeed = (seed) => Math.max(SEED_RANGE_MIN, Math.min(SEED_RANGE_MAX, Math.round(seed)));
@@ -249,7 +228,6 @@ function combinedSeedProb(teamA, teamB, round) {
     8: 0.28,
     4: 0.32,
     2: 0.34,
-    firstFour: 0.18,
   };
   const marketWeight = roundMarketWeight[round] ?? 0.24;
 
@@ -264,7 +242,7 @@ function combinedSeedProb(teamA, teamB, round) {
 // R64 without lines and R32+: use seed-history weighted blended model
 export function matchupProb(teamA, teamB, round, moneylines) {
   const useMoneyline =
-    (round === 64 || round === 'firstFour') &&
+    round === 64 &&
     moneylines &&
     moneylines[teamA.id] != null &&
     moneylines[teamB.id] != null;
@@ -298,21 +276,7 @@ function normalizeDistribution(distribution) {
 }
 
 function getSlotTeamDistribution(teamId) {
-  const ffGame = ffSlotToGame[teamId];
-  if (!ffGame) {
-    return teamsById[teamId] ? { [teamId]: 1 } : {};
-  }
-
-  const [aId, bId] = ffGame.teams;
-  const teamA = teamsById[aId];
-  const teamB = teamsById[bId];
-  if (!teamA || !teamB) return {};
-
-  const winA = matchupProb(teamA, teamB, 'firstFour', ffGame.moneylines || null);
-  return {
-    [aId]: winA,
-    [bId]: 1 - winA,
-  };
+  return teamsById[teamId] ? { [teamId]: 1 } : {};
 }
 
 function getWinnerDistribution(gameId, gameTree, memo = new Map()) {

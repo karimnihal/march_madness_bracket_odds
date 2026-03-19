@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import teamsData from '../data/teams.json';
-import firstFourData from '../data/firstFour.json';
 import bracketData from '../data/bracket.json';
 import { matchupProb, bracketOdds } from '../utils/odds';
 import { getPicksFromHash, getShareURL as buildShareURL } from '../utils/sharing';
@@ -10,24 +9,6 @@ const STORAGE_KEY = 'mm2026_picks';
 // Build team lookup
 const teamsById = {};
 teamsData.forEach(t => { teamsById[t.id] = t; });
-
-// Ensure individual First Four participants exist as team entries
-firstFourData.forEach(ff => {
-  ff.teams.forEach((teamId, idx) => {
-    if (!teamsById[teamId]) {
-      teamsById[teamId] = {
-        id: teamId,
-        name: ff.teamNames[idx],
-        shortName: ff.teamNames[idx],
-        seed: ff.seed,
-        region: ff.feedsInto.region,
-        champOdds: {},
-        champProb: 0,
-        isFirstFourParticipant: true,
-      };
-    }
-  });
-});
 
 // Build bracket game structure: all R64 games per region
 const regions = ['East', 'South', 'West', 'Midwest'];
@@ -121,12 +102,6 @@ function generateGameTree() {
 
 const gameTree = generateGameTree();
 
-// Map First Four slot IDs to their FF game data
-const ffSlotToGame = {};
-firstFourData.forEach(ff => {
-  ffSlotToGame[ff.feedsInto.slotTeamId] = ff;
-});
-
 // Find all downstream game IDs from a given game
 function getDownstreamGames(gameId) {
   const downstream = [];
@@ -139,13 +114,6 @@ function getDownstreamGames(gameId) {
   return downstream;
 }
 
-// Find R64 games that depend on a First Four slot
-function getR64GamesForFFSlot(slotTeamId) {
-  return Object.values(gameTree).filter(
-    g => g.round === 64 && (g.topTeam === slotTeamId || g.bottomTeam === slotTeamId)
-  );
-}
-
 export default function useBracket() {
   const [picks, setPicks] = useState(() => {
     // Check URL hash for shared picks first
@@ -153,11 +121,20 @@ export default function useBracket() {
     if (hashPicks) {
       // Clear hash so it doesn't persist on refresh
       window.history.replaceState(null, '', window.location.pathname);
-      return hashPicks;
+      const next = { ...hashPicks };
+      for (const k of Object.keys(next)) {
+        if (k.startsWith('ff')) delete next[k];
+      }
+      return next;
     }
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : {};
+      const parsed = saved ? JSON.parse(saved) : {};
+      if (!parsed || typeof parsed !== 'object') return {};
+      for (const k of Object.keys(parsed)) {
+        if (k.startsWith('ff')) delete parsed[k];
+      }
+      return parsed;
     } catch {
       return {};
     }
@@ -168,21 +145,13 @@ export default function useBracket() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(picks));
   }, [picks]);
 
-  // Resolve which team is in a slot (handles First Four placeholders)
+  // Resolve team by ID
   const resolveTeam = useCallback((teamId) => {
     if (!teamId) return null;
     const team = teamsById[teamId];
     if (!team) return null;
-    if (team.isFirstFourSlot) {
-      // Check if FF game has been picked
-      const ffGame = ffSlotToGame[teamId];
-      if (ffGame && picks[ffGame.id]) {
-        return teamsById[picks[ffGame.id]];
-      }
-      return { ...team, placeholder: true, ffGame };
-    }
     return team;
-  }, [picks]);
+  }, []);
 
   // Get the two teams for any game based on picks
   const getGameTeams = useCallback((gameId) => {
@@ -199,34 +168,6 @@ export default function useBracket() {
     const team2 = picks[feeder2] ? resolveTeam(picks[feeder2]) : null;
     return [team1, team2];
   }, [picks, resolveTeam]);
-
-  // Make a First Four pick
-  const makeFFPick = useCallback((ffGameId, teamId) => {
-    setPicks(prev => {
-      const next = { ...prev };
-      if (teamId) {
-        next[ffGameId] = teamId;
-      } else {
-        delete next[ffGameId];
-      }
-
-      // Find the FF game to get the slot it feeds into
-      const ffGame = firstFourData.find(f => f.id === ffGameId);
-      if (!ffGame) return next;
-
-      // If changing pick, clear downstream from the R64 game this feeds
-      const r64Games = getR64GamesForFFSlot(ffGame.feedsInto.slotTeamId);
-      for (const r64 of r64Games) {
-        // Clear the R64 pick and all downstream
-        delete next[r64.id];
-        for (const downId of getDownstreamGames(r64.id)) {
-          delete next[downId];
-        }
-      }
-
-      return next;
-    });
-  }, []);
 
   // Make a bracket pick
   const makePick = useCallback((gameId, teamId) => {
@@ -263,9 +204,6 @@ export default function useBracket() {
     const gameResults = {};
 
     for (const [gameId, winnerId] of Object.entries(picks)) {
-      // Skip FF picks (they're tracked separately)
-      if (gameId.startsWith('ff')) continue;
-
       const game = gameTree[gameId];
       if (!game) continue;
 
@@ -301,14 +239,14 @@ export default function useBracket() {
     return Object.keys(picks).length;
   }, [picks]);
 
-  const isComplete = totalPicks === 67; // 4 FF + 63 bracket
+  const isComplete = totalPicks === 63;
 
   const reset = useCallback(() => {
     setPicks({});
     localStorage.removeItem(STORAGE_KEY);
   }, []);
 
-  // Randomly fill all unpicked games (including First Four) across the entire bracket
+  // Randomly fill all unpicked games across the entire bracket
   const fillRandomBracket = useCallback(() => {
     setPicks(prev => {
       const next = { ...prev };
@@ -322,13 +260,6 @@ export default function useBracket() {
         if (!teamId) return null;
         const team = teamsById[teamId];
         if (!team) return null;
-        if (team.isFirstFourSlot) {
-          const ffGame = ffSlotToGame[teamId];
-          if (ffGame && workingPicks[ffGame.id]) {
-            return teamsById[workingPicks[ffGame.id]];
-          }
-          return { ...team, placeholder: true, ffGame };
-        }
         return team;
       };
 
@@ -345,16 +276,6 @@ export default function useBracket() {
         const team2 = workingPicks[feeder2] ? resolveTeamLocal(workingPicks[feeder2]) : null;
         return [team1, team2];
       };
-
-      // Fill First Four games
-      for (const ff of firstFourData) {
-        if (!workingPicks[ff.id]) {
-          const [t1, t2] = ff.teams;
-          const choice = Math.random() < 0.5 ? t1 : t2;
-          workingPicks[ff.id] = choice;
-          next[ff.id] = choice;
-        }
-      }
 
       // Fill bracket games in round order so later rounds see winners from earlier ones
       const roundsInOrder = [64, 32, 16, 8, 4, 2, 1];
@@ -382,19 +303,10 @@ export default function useBracket() {
     });
   }, []);
 
-  // Randomly fill unpicked games only in the current round (and First Four)
+  // Randomly fill unpicked games only in the current round
   const fillRandomRound = useCallback(() => {
     setPicks(prev => {
       const next = { ...prev };
-
-      // Fill First Four games
-      for (const ff of firstFourData) {
-        if (!next[ff.id]) {
-          const [t1, t2] = ff.teams;
-          const choice = Math.random() < 0.5 ? t1 : t2;
-          next[ff.id] = choice;
-        }
-      }
 
       // Determine the "current" round: the earliest round that still has any unpicked games
       const roundOrder = [64, 32, 16, 8, 4, 2, 1];
@@ -438,7 +350,6 @@ export default function useBracket() {
   return {
     picks,
     makePick,
-    makeFFPick,
     getGameTeams,
     resolveTeam,
     odds,
@@ -449,7 +360,6 @@ export default function useBracket() {
     fillRandomBracket,
     gameTree,
     teamsById,
-    firstFourData,
     regions,
     getShareURL,
   };
